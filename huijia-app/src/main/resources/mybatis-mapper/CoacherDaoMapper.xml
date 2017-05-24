@@ -3,15 +3,16 @@
 <mapper namespace="com.cloudo.hj.CoacherDao">
 
 
-	<resultMap id="coacher" type="com.csair.r.globalserv.domain.ServComment">
+	<resultMap id="coacher" type="com.cloudo.hj.domain.CoacherInfo">
 		<result column="id" property="id"  jdbcType="BIGINT"/>
-		<result column="fltdate" property="fltdate" jdbcType="TIMESTAMP"/>
-		<result column="aln" property="aln" jdbcType="VARCHAR" />
-		<result column="fltno" property="fltno" jdbcType="VARCHAR"/>
-		<result column="fltno_suffix" property="fltnoSuffix" jdbcType="VARCHAR"/>
-		<result column="dep" property="dep" jdbcType="VARCHAR"/>
-		<result column="arv" property="arv" jdbcType="VARCHAR" />
-		<result column="comment" property="comment" jdbcType="VARCHAR" />
+		<result column="account" property="fltdate" jdbcType="TIMESTAMP"/>
+		<result column="name" property="aln" jdbcType="VARCHAR" />
+		<result column="gender" property="fltno" jdbcType="VARCHAR"/>
+		<result column="cellphone" property="fltnoSuffix" jdbcType="VARCHAR"/>
+		<result column="type" property="dep" jdbcType="VARCHAR"/>
+		<result column="brithday" property="arv" jdbcType="VARCHAR" />
+		<result column="shopInfo" property="comment" jdbcType="VARCHAR" />
+
 	</resultMap>
 	
 	<sql id="baseColumnList">

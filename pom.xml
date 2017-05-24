@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>huijia-domain</module>
+        <module>huijia-app</module>
     </modules>
     <packaging>pom</packaging>
 

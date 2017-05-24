@@ -1,4 +1,4 @@
-package domain;
+package com.cloudo.hj.domain;
 
 import java.io.Serializable;
 import java.util.Date;

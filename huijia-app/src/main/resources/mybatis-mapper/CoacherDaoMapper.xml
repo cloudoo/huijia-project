@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudo.hj.CoacherDao">
+
+
+	<resultMap id="coacher" type="com.csair.r.globalserv.domain.ServComment">
+		<result column="id" property="id"  jdbcType="BIGINT"/>
+		<result column="fltdate" property="fltdate" jdbcType="TIMESTAMP"/>
+		<result column="aln" property="aln" jdbcType="VARCHAR" />
+		<result column="fltno" property="fltno" jdbcType="VARCHAR"/>
+		<result column="fltno_suffix" property="fltnoSuffix" jdbcType="VARCHAR"/>
+		<result column="dep" property="dep" jdbcType="VARCHAR"/>
+		<result column="arv" property="arv" jdbcType="VARCHAR" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="baseColumnList">
+		t.id
+		, t.fltdate
+		, t.aln
+		, t.fltno
+		, t.fltno_suffix
+		, t.dep
+		, t.arv
+		, t.comment
+	</sql>
+
+	<select id="findAll" resultType="com.csair.r.globalserv.domain.ServComment">
+		select 
+        <include refid="baseColumnList" />
+        from capse_serv_comment AS t;
+	</select>
+	
+	
+	<select id="query" parameterType="com.csair.r.globalserv.domain.ServComment" resultMap="servComment">
+		SELECT * FROM capse_serv_comment AS t
+		WHERE 1=1
+		<if test = "fltdate != null">
+		     AND t.fltdate = #{fltdate}
+		</if>
+		<if test = "aln != null">
+		    AND t.aln = #{aln}
+		</if>		
+		<if test = "fltno != null">
+		    AND t.fltno = #{fltno}
+		</if>
+		<if test = "dep != null">
+		    AND t.dep = #{dep}
+		</if>
+		<if test = "arv != null">
+		    AND t.arv = #{arv}
+		</if>
+		<if test = "comment != null">
+		    AND t.comment = #{comment}
+		</if>
+	</select>
+
+	<select id="queryInfo" parameterType="com.csair.r.golobalserv.param.ServRequest" resultMap="servComment">
+		SELECT * FROM capse_serv_comment AS t
+		WHERE 1=1
+		<if test = "startDate != null">
+		 	<![CDATA[
+		    and t.fltdate >= #{startDate}
+		     ]]>
+		</if>
+		<if test = "endDate != null">
+		    <![CDATA[
+		    AND t.fltdate <= #{endDate}
+		    ]]>
+		</if>
+		<if test = "aln != null">
+		    AND t.aln = #{aln}
+		</if>		
+		<if test = "fltno != null">
+		    AND t.fltno = #{fltno}
+		</if>
+		<if test = "dep != null">
+		    AND t.dep = #{dep}
+		</if>
+		<if test = "arv != null">
+		    AND t.arv = #{arv}
+		</if>
+	</select>
+    
+    <select id="queryInfobyword" parameterType="java.lang.String" resultMap="servComment">
+        SELECT * FROM capse_serv_comment AS t
+        WHERE 1=1
+        and comment like CONCAT(CONCAT('%',#{word}),'%')
+    </select>
+
+</mapper>

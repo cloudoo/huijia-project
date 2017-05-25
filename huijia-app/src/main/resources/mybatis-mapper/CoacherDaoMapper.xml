@@ -1,92 +1,239 @@
-<?xml version="1.0" encoding="UTF-8" ?>  
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudo.hj.CoacherDao">
+<mapper namespace="com.cloudo.hj.dao.CoacherInfoDao">
 
 
-	<resultMap id="coacher" type="com.cloudo.hj.domain.CoacherInfo">
-		<result column="id" property="id"  jdbcType="BIGINT"/>
-		<result column="account" property="fltdate" jdbcType="TIMESTAMP"/>
-		<result column="name" property="aln" jdbcType="VARCHAR" />
-		<result column="gender" property="fltno" jdbcType="VARCHAR"/>
-		<result column="cellphone" property="fltnoSuffix" jdbcType="VARCHAR"/>
-		<result column="type" property="dep" jdbcType="VARCHAR"/>
-		<result column="brithday" property="arv" jdbcType="VARCHAR" />
-		<result column="shopInfo" property="comment" jdbcType="VARCHAR" />
+    <resultMap id="coacherInfo" type="com.cloudo.hj.domain.CoacherInfo">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="account" property="account" jdbcType="TIMESTAMP"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="TINYINT"/>
+        <result column="cellphone" property="cellphone" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="brithday" property="brithday" jdbcType="DATE"/>
+        <result column="shopInfo" property="shopInfo" jdbcType="VARCHAR"/>
+        <result column="order" property="order" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="techage" property="techage" jdbcType="TINYINT"/>
+        <result column="tech_count_time" property="techCountTime" jdbcType="INTEGER"/>
+        <result column="speciality" property="speciality" jdbcType="VARCHAR"/>
+        <result column="certification" property="certification" jdbcType="VARCHAR"/>
+        <result column="tags" property="tags" jdbcType="VARCHAR"/>
+        <result column="introducs" property="introducs" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="pic_dir" property="picDir" jdbcType="VARCHAR"/>
+        <result column="op_tm" property="opTm" jdbcType="TIMESTAMP"/>
+    </resultMap>
 
-	</resultMap>
-	
-	<sql id="baseColumnList">
-		t.id
-		, t.fltdate
-		, t.aln
-		, t.fltno
-		, t.fltno_suffix
-		, t.dep
-		, t.arv
-		, t.comment
-	</sql>
+    <sql id="Base_Column_List">
+        t.id
+        , t.account
+        , t.name
+        , t.gender
+        , t.cellphone
+        , t.type
+        , t.brithday
+        , t.shopinfo
+        , t.order
+        , t.status
+        , t.techage
+        , t.tech_count_time
+        , t.speciality
+        , t.certification
+        , t.tags
+        , t.introducs
+        , t.description
+        , t.pic_dir
+        , t.op_tm
+    </sql>
 
-	<select id="findAll" resultType="com.csair.r.globalserv.domain.ServComment">
-		select 
-        <include refid="baseColumnList" />
-        from capse_serv_comment AS t;
-	</select>
-	
-	
-	<select id="query" parameterType="com.csair.r.globalserv.domain.ServComment" resultMap="servComment">
-		SELECT * FROM capse_serv_comment AS t
-		WHERE 1=1
-		<if test = "fltdate != null">
-		     AND t.fltdate = #{fltdate}
-		</if>
-		<if test = "aln != null">
-		    AND t.aln = #{aln}
-		</if>		
-		<if test = "fltno != null">
-		    AND t.fltno = #{fltno}
-		</if>
-		<if test = "dep != null">
-		    AND t.dep = #{dep}
-		</if>
-		<if test = "arv != null">
-		    AND t.arv = #{arv}
-		</if>
-		<if test = "comment != null">
-		    AND t.comment = #{comment}
-		</if>
-	</select>
+    <sql id="Simple_Column_List">
+        t.id
+        , t.account
+        , t.name
+        , t.gender
+        , t.cellphone
+        , t.type
+        , t.shopinfo
+        , t.order
+        , t.pic_dir
+        , t.op_tm
+    </sql>
 
-	<select id="queryInfo" parameterType="com.csair.r.golobalserv.param.ServRequest" resultMap="servComment">
-		SELECT * FROM capse_serv_comment AS t
-		WHERE 1=1
-		<if test = "startDate != null">
-		 	<![CDATA[
-		    and t.fltdate >= #{startDate}
-		     ]]>
-		</if>
-		<if test = "endDate != null">
-		    <![CDATA[
-		    AND t.fltdate <= #{endDate}
-		    ]]>
-		</if>
-		<if test = "aln != null">
-		    AND t.aln = #{aln}
-		</if>		
-		<if test = "fltno != null">
-		    AND t.fltno = #{fltno}
-		</if>
-		<if test = "dep != null">
-		    AND t.dep = #{dep}
-		</if>
-		<if test = "arv != null">
-		    AND t.arv = #{arv}
-		</if>
-	</select>
-    
-    <select id="queryInfobyword" parameterType="java.lang.String" resultMap="servComment">
-        SELECT * FROM capse_serv_comment AS t
+    <select id="findAll" resultType="com.cloudo.hj.domain.CoacherInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from HJ_COACHER_INFO AS t;
+    </select>
+
+    <select id="findByParam" resultType="com.cloudo.hj.domain.CoacherInfo" parameterType="com.cloudo.hj.domain.CoacherInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from HJ_COACHER_INFO AS t
         WHERE 1=1
-        and comment like CONCAT(CONCAT('%',#{word}),'%')
+        <if test="id>0">
+            and t.id =   #{id}
+        </if>
+        <if test="name!=null">
+            and name like #{name}
+        </if>
+        <if test="cellphone!=null">
+            and cellphone like #{cellphone}
+        </if>
+    </select>
+
+    <select id="findSimple" resultType="com.cloudo.hj.domain.CoacherInfo" parameterType="com.cloudo.hj.domain.CoacherInfo">
+        select
+        <include refid="Simple_Column_List"/>
+        from HJ_COACHER_INFO AS t
+        WHERE 1=1
+        <if test="id>0">
+            and t.id =   #{id}
+        </if>
+        <if test="name!=null">
+            and name like #{name}
+        </if>
+        <if test="cellphone!=null">
+            and cellphone like #{cellphone}
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.cloudo.hj.domain.CoacherInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO HJ_COACHER_INFO (
+        `account`,
+        `name`,
+        `gender`,
+        `cellphone`,
+        `type`,
+        `brithday`,
+        `shopinfo`,
+        `order`,
+        `status`,
+        `techage`,
+        `tech_count_time`,
+        `speciality`,
+        `certification`,
+        `tags`,
+        `introducs`,
+        `description`,
+        `pic_dir`)
+        values ( #{account},
+        #{name},
+        #{gender},
+        #{cellphone},
+        #{type},
+        #{brithday},
+        #{shopInfo},
+        #{order},
+        #{status},
+        #{techage},
+        #{techCountTime},
+        #{speciality},
+        #{certification},
+        #{tags},
+        #{introducs},
+        #{description},
+        #{picDir});
+    </insert>
+
+
+    <update id="update" parameterType="com.cloudo.hj.domain.CoacherInfo">
+        UPDATE HJ_COACHER_INFO
+        <set>
+            <if test="account!=null">
+                `account` = #{account},
+            </if>
+            <if test="name!=null">
+                `name` = #{name},
+            </if>
+            <if test="gender> -1">
+                `gender` = #{gender},
+            </if>
+            <if test="cellphone!=null">
+                `cellphone` = #{cellphone},
+            </if>
+            <if test="type> -1">
+                `type` = #{type},
+            </if>
+            <if test="brithday!=null">
+                `brithday` = #{brithday},
+            </if>
+            <if test="shopInfo!=null">
+                `shopinfo` = #{shopInfo},
+            </if>
+            <if test="order> -1">
+                `order` = #{order},
+            </if>
+            <if test="status> -1">
+                `status` = #{status},
+            </if>
+            <if test="techage> -1">
+                `techage` =#{techage},
+            </if>
+            <if test="techCountTime> -1">
+                `tech_count_time` =#{techCountTime},
+            </if>
+            <if test="speciality!=null">
+                `speciality` =#{speciality},
+            </if>
+            <if test="certification!=null">
+                `certification` =#{certification},
+            </if>
+            <if test="tags!=null">
+                `tags` =#{tags},
+            </if>
+            <if test="introducs!=null">
+                `introducs` =#{introducs},
+            </if>
+            <if test="description!=null">
+                `description` =#{description},
+            </if>
+            <if test="picDir!=null">
+                `pic_dir` = #{picDir}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+<!--    <update id="updateByParam" parameterType="com.cloudo.hj.domain.CoacherInfo">
+        UPDATE HJ_COACHER_INFO
+        SET
+        `value` = #{value}
+        WHERE `code` = #{code} and `type` = #{type}
+    </update>-->
+
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE
+        FROM HJ_COACHER_INFO
+        WHERE id =
+        #{id}
+    </delete>
+
+    <select id="find" parameterType="java.lang.Long" resultMap="coacherInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HJ_COACHER_INFO AS t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.cloudo.hj.domain.CoacherInfo" resultMap="coacherInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HJ_COACHER_INFO AS t
+        WHERE 1=1
+        <if test="id!=null">
+            and t.id = #{id}
+        </if>
+        <if test="code!=null">
+            and t.code = #{code}
+        </if>
+        <if test="value!=null">
+            and t.value = #{value}
+        </if>
+        <if test="type!=null">
+            and t.type = #{type}
+        </if>
     </select>
 
 </mapper>

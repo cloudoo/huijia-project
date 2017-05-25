@@ -9,7 +9,8 @@ import java.util.List;
  */
 public interface BaseDao<T> {
     public List<T> findAll();
-    public CoacherInfo find(Long id);
+    public T find(Long id);
+    public List<T> findByParam(T t);
     public int save(T t);
     public int update(T t);
     public int remove(Long id);

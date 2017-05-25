@@ -42,7 +42,7 @@
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.csair.r.globalserv.dao" />
+		<property name="basePackage" value="com.cloudo.hj.dao" />
 	</bean>
 
 	<!-- 可通过注解控制事务 -->

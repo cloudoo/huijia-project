@@ -6,6 +6,8 @@ target/
 
 logs/
 
+*.log
+
 .settings/
 
 .project

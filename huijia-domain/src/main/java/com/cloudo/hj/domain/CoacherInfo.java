@@ -12,16 +12,16 @@ public class CoacherInfo implements Serializable{
     private Long id;
     private String account;
     private String name;
-    private int gender;
+    private int gender=-1;//0 男，1 女
     private String cellphone;
-    private int type;//内部外部
+    private int type=-1;// 0内部 1外部
     private Date brithday;
     private String shopInfo;//门店信息
-    private int order;// 排序
-
+    private int order=-1;// 排序
+    private int status=-1;//0未激活，1激活
     //教练信息
-    private int techage;//教龄信息
-    private int techcountTime;//累计教学时间
+    private int techage=-1;//教龄信息
+    private int techCountTime=-1;//累计教学时间
     private String speciality;//专长 逗号分隔
     private String certification;
     private String graduateSch;//毕业学校
@@ -104,6 +104,14 @@ public class CoacherInfo implements Serializable{
         this.order = order;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public int getTechage() {
         return techage;
     }
@@ -112,12 +120,12 @@ public class CoacherInfo implements Serializable{
         this.techage = techage;
     }
 
-    public int getTechcountTime() {
-        return techcountTime;
+    public int getTechCountTime() {
+        return techCountTime;
     }
 
-    public void setTechcountTime(int techcountTime) {
-        this.techcountTime = techcountTime;
+    public void setTechCountTime(int techCountTime) {
+        this.techCountTime = techCountTime;
     }
 
     public String getSpeciality() {

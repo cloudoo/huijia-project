@@ -15,7 +15,7 @@
 	default-lazy-init="true">
 
 	<!-- 引入jdbc配置文件 -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:property-placeholder location="classpath:META-INF/prop/jdbc.properties" />
 
 	<!--创建jdbc数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"

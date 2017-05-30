@@ -63,7 +63,7 @@
     <select id="findAll" resultType="com.cloudo.hj.domain.CoacherInfo">
         select
         <include refid="Base_Column_List"/>
-        from HJ_COACHER_INFO AS t;
+        from HJ_COACHER_INFO AS t order by t.order;
     </select>
 
     <select id="findByParam" resultType="com.cloudo.hj.domain.CoacherInfo" parameterType="com.cloudo.hj.domain.CoacherInfo">

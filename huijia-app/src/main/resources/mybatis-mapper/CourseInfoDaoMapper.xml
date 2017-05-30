@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudo.hj.dao.CourseInfoDao">
+
+
+    <resultMap id="courseInfo" type="com.cloudo.hj.domain.CourseInfo">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="cover_dir" property="coverDir" jdbcType="VARCHAR"/>
+        <result column="duration" property="duration" jdbcType="TINYINT"/>
+        <result column="min" property="min" jdbcType="TINYINT"/>
+        <result column="max" property="max" jdbcType="TINYINT"/>
+        <result column="normal_cost" property="normalCost" jdbcType="DOUBLE"/>
+        <result column="cost_desc" property="costDesc" jdbcType="VARCHAR"/>
+        <result column="course_desc" property="courseDesc" jdbcType="VARCHAR"/>
+        <result column="valid" property="valid" jdbcType="BOOLEAN" />
+        <result column="op_tm" property="opTm" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        t.id
+        , t.name
+        , t.type
+        , t.cover_dir
+        , t.duration
+        , t.min
+        , t.max
+        , t.normal_cost
+        , t.cost_desc
+        , t.course_desc
+        , t.valid
+        , t.op_tm
+    </sql>
+
+
+    <select id="findAll" resultType="com.cloudo.hj.domain.CourseInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from HJ_COURSE_INFO AS t order by t.valid;
+    </select>
+
+    <select id="findByParam" resultType="com.cloudo.hj.domain.CourseInfo"
+            parameterType="com.cloudo.hj.domain.CourseInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from HJ_COACHER_INFO AS t
+        WHERE 1=1
+        <if test="id>0">
+            and t.id = #{id}
+        </if>
+        <if test="name!=null">
+            and name like #{name}
+        </if>
+    </select>
+
+
+    <insert id="save" parameterType="com.cloudo.hj.domain.CourseInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO HJ_COURSE_INFO (
+  `name` ,
+  `type` ,
+  `cover_dir`,
+  `duration` ,
+  `min` ,
+  `max` ,
+  `normal_cost` ,
+  `cost_desc` ,
+  `course_desc` ,
+  `valid`
+        )
+        values (
+        #{name},
+        #{type},
+        #{coverDir},
+        #{duration},
+        #{min},
+        #{max},
+        #{normalCost},
+        #{costDesc},
+        #{courseDesc},
+        #{valid})
+    </insert>
+
+
+    <update id="update" parameterType="com.cloudo.hj.domain.CourseInfo">
+        UPDATE HJ_COURSE_INFO
+        <set>
+            <if test="name!=null">
+                `name` = #{name},
+            </if>
+            <if test="type>0">
+                `type` = #{type},
+            </if>
+            <if test="coverDir != null ">
+                `cover_dir` = #{coverDir},
+            </if>
+            <if test="min > 0">
+                `min` = #{min},
+            </if>
+            <if test="max > 0">
+                `type` = #{type},
+            </if>
+            <if test="normalCost>0">
+                `normal_cost` = #{normalCost},
+            </if>
+            <if test="costDesc!=null">
+                `costDesc` = #{costDesc},
+            </if>
+            <if test="courseDesc !=null ">
+                `courseDesc` = #{courseDesc}
+            </if>
+            <if test="valid != null">
+                `valid` = #{valid}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--    <update id="updateByParam" parameterType="com.cloudo.hj.domain.CoacherInfo">
+            UPDATE HJ_COACHER_INFO
+            SET
+            `value` = #{value}
+            WHERE `code` = #{code} and `type` = #{type}
+        </update>-->
+
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE
+        FROM HJ_COURSE_INFO
+        WHERE id =
+        #{id}
+    </delete>
+
+    <select id="find" parameterType="java.lang.Long" resultMap="courseInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HJ_COURSE_INFO AS t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.cloudo.hj.domain.CourseInfo" resultMap="courseInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HJ_COURSE_INFO AS t
+        WHERE 1=1
+        <if test="id!=null">
+            and t.id = #{id}
+        </if>
+        <if test="code!=null">
+            and t.code = #{code}
+        </if>
+        <if test="value!=null">
+            and t.value = #{value}
+        </if>
+        <if test="type!=null">
+            and t.type = #{type}
+        </if>
+    </select>
+
+</mapper>

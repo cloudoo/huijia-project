@@ -23,12 +23,12 @@ public class CoacherInfo implements Serializable{
     private int techage=-1;//教龄信息
     private int techCountTime=-1;//累计教学时间
     private String speciality;//专长 逗号分隔
-    private String certification;
+    private String certification;//认证
     private String graduateSch;//毕业学校
     private String tags;
     private String introducs;//简介
-    private String description;
-    private String picDir;
+    private String description;//描述
+    private String picDir;//图片
 
     private Timestamp opTm;
 

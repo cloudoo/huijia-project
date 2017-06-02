@@ -26,18 +26,18 @@ public class CourseInfoDaoTest {
     public void testInsert(){
         CourseInfo courseInfo = new CourseInfo();
 
-        courseInfo.setName("私教课程");
-        courseInfo.setType(CourseInfo.PRI);
-        courseInfo.setMin(1);
-        courseInfo.setMax(1);
-        courseInfo.setDuration(30);
-        courseInfo.setNormalCost(120.00);
+        courseInfo.setName("公开课程");
+        courseInfo.setType(CourseInfo.COM);
+        courseInfo.setMin(5);
+        courseInfo.setMax(20);
+        courseInfo.setDuration(60);
+        courseInfo.setNormalCost(20.5);
         courseInfo.setCostDesc("");
         courseInfo.setCoverDir("/user/test/1.jpg");
-        courseInfo.setCourseDesc("私教课程，1对1");
+        courseInfo.setCourseDesc("公开课程");
         courseInfo.setValid(true);
 
-             int i = courseInfoDao.save(courseInfo);
+        int i = courseInfoDao.save(courseInfo);
 
         Assert.assertEquals(i,1);
 

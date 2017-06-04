@@ -11,7 +11,7 @@ public class ReservationInfo implements Serializable {
     private Long id;
 
     private Timestamp startTm;
-    private Trainee trainee;
+    private TraineeInfo traineeInfo;
     private CoacherInfo coacherInfo;
     private CourseInfo courseInfo;
     private String type;
@@ -37,12 +37,12 @@ public class ReservationInfo implements Serializable {
         this.startTm = startTm;
     }
 
-    public Trainee getTrainee() {
-        return trainee;
+    public TraineeInfo getTraineeInfo() {
+        return traineeInfo;
     }
 
-    public void setTrainee(Trainee trainee) {
-        this.trainee = trainee;
+    public void setTraineeInfo(TraineeInfo traineeInfo) {
+        this.traineeInfo = traineeInfo;
     }
 
     public CoacherInfo getCoacherInfo() {

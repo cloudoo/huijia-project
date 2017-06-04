@@ -31,7 +31,7 @@ public class CourseInfoDaoTest {
         courseInfo.setMin(5);
         courseInfo.setMax(20);
         courseInfo.setDuration(60);
-        courseInfo.setNormalCost(20.5);
+        courseInfo.setNormalCost(20.5f);
         courseInfo.setCostDesc("");
         courseInfo.setCoverDir("/user/test/1.jpg");
         courseInfo.setCourseDesc("公开课程");
@@ -47,7 +47,10 @@ public class CourseInfoDaoTest {
     public void testUpdate(){
         CourseInfo courseInfo = new CourseInfo();
         courseInfo.setId(1l);
-        courseInfo.setNormalCost(100.23);
+        courseInfo.setName("团课1");
+//        courseInfo.setNormalCost(112.23f);
+//        courseInfo.setMin(12);
+//        courseInfo.setMax(20);
         int i = courseInfoDao.update(courseInfo);
 
         Assert.assertEquals(i,1);

@@ -55,6 +55,7 @@ public class CoachInfoDaoTest {
     @Test
     public void testUpdate(){
         CoacherInfo coacherInfo = new CoacherInfo();
+        coacherInfo.setCellphone("1365737924");
         coacherInfo.setId(1l);
         coacherInfo.setTechage(12);
         coacherInfo.setOrder(2);

@@ -18,9 +18,10 @@ public class CourseInfoService extends AbstractBaseService<CourseInfo> implement
         this.baseDao = baseDao;
     }
     @Override
-    public BaseDao<CourseInfo> getBaseDao() {
+    public CourseInfoDao getBaseDao() {
         return baseDao;
     }
+
 
 
 }

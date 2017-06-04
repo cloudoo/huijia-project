@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.cloudo.hj.dao.CourseInfoDao">
 
-
     <resultMap id="courseInfo" type="com.cloudo.hj.domain.CourseInfo">
-        <result column="id" property="id" jdbcType="BIGINT"/>
+        <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="type" property="type" jdbcType="TINYINT"/>
         <result column="cover_dir" property="coverDir" jdbcType="VARCHAR"/>
         <result column="duration" property="duration" jdbcType="TINYINT"/>
         <result column="min" property="min" jdbcType="TINYINT"/>
         <result column="max" property="max" jdbcType="TINYINT"/>
-        <result column="normal_cost" property="normalCost" jdbcType="DOUBLE"/>
+        <result column="normal_cost" property="normalCost" jdbcType="FLOAT"/>
         <result column="cost_desc" property="costDesc" jdbcType="VARCHAR"/>
         <result column="course_desc" property="courseDesc" jdbcType="VARCHAR"/>
         <result column="valid" property="valid" jdbcType="BOOLEAN" />
-        <result column="op_tm" property="opTm" jdbcType="TIMESTAMP"/>
+        <result column="op_tm" property="opTm" />
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -34,13 +34,13 @@
     </sql>
 
 
-    <select id="findAll" resultType="com.cloudo.hj.domain.CourseInfo">
+    <select id="findAll" resultMap="courseInfo">
         select
         <include refid="Base_Column_List"/>
         from HJ_COURSE_INFO AS t order by t.valid;
     </select>
 
-    <select id="findByParam" resultType="com.cloudo.hj.domain.CourseInfo"
+    <select id="findByParam" resultMap="courseInfo"
             parameterType="com.cloudo.hj.domain.CourseInfo">
         select
         <include refid="Base_Column_List"/>
@@ -108,10 +108,10 @@
                 `costDesc` = #{costDesc},
             </if>
             <if test="courseDesc !=null ">
-                `courseDesc` = #{courseDesc}
+                `courseDesc` = #{courseDesc} ,
             </if>
             <if test="valid != null">
-                `valid` = #{valid}
+                `valid` = #{valid} ,
             </if>
         </set>
         WHERE id = #{id}

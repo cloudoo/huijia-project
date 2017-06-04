@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by cloudoo on 2017/5/20.
  */
-public class CommonCourseInfo implements Serializable {
+public class PublicCourseInfo implements Serializable {
 
     private Long id;
     private ShopInfo shopInfo;

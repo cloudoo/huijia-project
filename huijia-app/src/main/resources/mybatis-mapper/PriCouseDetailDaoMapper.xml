@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudo.hj.dao.PriCourseDetailDao">
+
+
+    <resultMap id="priCourseDetail" type="com.cloudo.hj.domain.PriCourseDetail">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sch_cour_id" property="schCourId" jdbcType="BIGINT" />
+        <result column="shop_name" property="shopName" jdbcType="VARCHAR"/>
+        <result column="coacher_id" property="coacherId" jdbcType="BIGINT"/>
+        <result column="course_id" property="courseId" jdbcType="BIGINT"/>
+        <result column="size" property="size" jdbcType="TINYINT"/>
+        <result column="course_date" property="courseDate" jdbcType="DATE"/>
+        <result column="start_tm" property="startTm" jdbcType="VARCHAR"/>
+        <result column="end_tm" property="endTm" jdbcType="VARCHAR"/>
+        <result column="cards_type" property="cardsType" jdbcType="INTEGER"/>
+        <result column="other_type" property="otherType" jdbcType="VARCHAR"/>
+        <result column="op_tm" property="opTm" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        t.id
+      t.sch_cour_id
+        , t.shop_name
+        , t.coacher_id
+        , t.course_id
+        , t.size
+        , t.course_date
+        , t.start_tm
+        , t.end_tm
+        , t.cards_type
+        , t.other_type
+        , t.op_tm
+    </sql>
+
+    <sql id="table_name">
+        hj_pri_cour_detail_info
+    </sql>
+
+    <select id="findAll" resultMap="priCourseDetail">
+        select
+        <include refid="Base_Column_List"/>
+        from
+      <include refid="table_name"/>
+        AS t order by t.op_tm;
+    </select>
+
+    <select id="findByParam" resultMap="priCourseDetail" parameterType="com.cloudo.hj.domain.PriCourseDetail">
+        select
+        <include refid="Base_Column_List"/>
+        from <include refid="table_name"/> AS t
+        WHERE 1=1
+        <if test="id>0">
+            and t.id =   #{id}
+        </if>
+        <if test="shopName!=null">
+            and shop_name like #{shopName}
+        </if>
+    </select>
+
+    <select id="findSimple" resultMap="priCourseDetail" parameterType="com.cloudo.hj.domain.PriCourseDetail">
+        select
+        <include refid="Base_Column_List"/>
+        from <include refid="table_name"/> AS t
+        WHERE 1=1
+        <if test="id>0">
+            and t.id =   #{id}
+        </if>
+        <if test="shopName!=null">
+            and shop_name like #{shopName}
+        </if>
+
+    </select>
+
+    <insert id="save" parameterType="com.cloudo.hj.domain.PriCourseDetail" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO <include refid="table_name"/> (
+        sch_cour_id,
+         shop_name
+        , coacher_id
+        , course_id
+        , size
+        , course_date
+        , start_tm
+        , end_tm
+        , cards_type
+        , other_type
+        )
+        values (
+        #{schCourId},
+        #{shopName},
+        #{coacherId},
+        #{courseId},
+        #{size},
+        #{courseDate},
+        #{startTm},
+        #{endTm},
+        #{cardsType},
+        #{otherType}
+        );
+    </insert>
+
+    <!-- 批量提交 -->
+    <insert id="saveList" parameterType="java.util.List" useGeneratedKeys="true">
+    <!--<selectKey resultType="long" keyProperty="id" order="AFTER">-->
+        <!--SELECT-->
+        <!--LAST_INSERT_ID()-->
+    <!--</selectKey>-->
+    INSERT INTO <include refid="table_name"/> (
+        sch_cour_id,
+        shop_name
+        , coacher_id
+        , course_id
+        , size
+        , course_date
+        , start_tm
+        , end_tm
+        , cards_type
+        , other_type
+        )
+        values
+        <foreach collection="courList" item="course" separator=",">
+            (
+            #{course.schCourId},
+            #{course.shopName},
+            #{course.coacherId},
+            #{course.courseId},
+            #{course.size},
+            #{course.courseDate},
+            #{course.startTm},
+            #{course.endTm},
+            #{course.cardsType},
+            #{course.otherType})
+        </foreach>
+    </insert>
+
+
+    <update id="update" parameterType="priCourseDetail">
+        UPDATE <include refid="table_name"/>
+        <set>
+            <if test="shopName!=null">
+                `shop_name` = #{shopName},
+            </if>
+            <if test="schCourId!=null">
+                `sch_cour_id` = #{schCourId},
+            </if>
+            <if test="coacherId!=null">
+                `coaacher_id` = #{coacherId},
+            </if>
+            <if test="courseId!=null">
+                `course_id` = #{courseId},
+            </if>
+            <if test="size>0">
+                `size` = #{size},
+            </if>
+            <if test="courseDate!=null">
+                `course_date` = #{courseDate},
+            </if>
+            <if test="startTm!=null">
+                `start_tm` = #{startTm},
+            </if>
+            <if test="endTm!=null">
+                `end_tm` = #{endTm},
+            </if>
+            <if test="cardsType!=null">
+                `cards_type` =#{cardsType},
+            </if>
+            <if test="otherType!=null">
+                `other_type` =#{otherType},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+<!--    <update id="updateByParam" parameterType="com.cloudo.hj.domain.CoacherInfo">
+        UPDATE HJ_COACHER_INFO
+        SET
+        `value` = #{value}
+        WHERE `code` = #{code} and `type` = #{type}
+    </update>-->
+
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE
+        FROM <include refid="table_name"/>
+        WHERE id =
+        #{id}
+    </delete>
+
+    <select id="find" parameterType="java.lang.Long" resultMap="priCourseDetail">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM <include refid="table_name"/> AS t
+        WHERE t.id = #{id}
+    </select>
+
+</mapper>

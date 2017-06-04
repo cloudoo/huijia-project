@@ -45,7 +45,7 @@
                 <div class="info control clearfix">
                 <span class="pull-left">性别：</span>
                 <div class="pull-right">
-                                    <input type="hidden" name="profile[sex]" id="sexValue" value="0"/>
+                                    <input type="hidden" name="profile[gender]" id="sexValue" value="0"/>
                     <a href="javascript:;" data-toggle="modal" data-target="#sexModal" class="arrow">
                         <span id="sexText">女</span>
                     </a>

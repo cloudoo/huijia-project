@@ -20,7 +20,7 @@ public class CourseInfo implements Serializable {
 
     private int min = 0;//最小开课人数
     private int max = 0;//最大开课人数
-    private Double normalCost = 0.00;//课程标准价格
+    private Float normalCost = 0.00f;//课程标准价格
     private String costDesc;//费用说明
     private String courseDesc;//
     private Boolean valid;//
@@ -82,11 +82,11 @@ public class CourseInfo implements Serializable {
         this.max = max;
     }
 
-    public Double getNormalCost() {
+    public Float getNormalCost() {
         return normalCost;
     }
 
-    public void setNormalCost(Double normalCost) {
+    public void setNormalCost(Float normalCost) {
         this.normalCost = normalCost;
     }
 

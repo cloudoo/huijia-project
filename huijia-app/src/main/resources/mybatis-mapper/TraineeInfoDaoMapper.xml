@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudo.hj.dao.TraineeInfoDao">
+
+
+    <resultMap id="traineeInfo" type="com.cloudo.hj.domain.TraineeInfo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="TINYINT"/>
+        <result column="cellphone" property="cellphone" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="register_tm" property="registerTm" jdbcType="TIMESTAMP"/>
+        <result column="identit" property="identit" jdbcType="VARCHAR"/>
+        <result column="brithday" property="brithday" jdbcType="DATE"/>
+        <result column="height" property="height" jdbcType="FLOAT"/>
+        <result column="weight" property="weight" jdbcType="FLOAT"/>
+        <result column="dis_type" property="disType" jdbcType="TINYINT"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="fit_needs" property="fitNeeds" jdbcType="VARCHAR"/>
+        <result column="coacher_id" property="coacherId" jdbcType="BIGINT"/>
+        <result column="career" property="career" jdbcType="VARCHAR"/>
+        <result column="post" property="post" jdbcType="VARCHAR"/>
+        <result column="history" property="history" jdbcType="VARCHAR"/>
+        <result column="pic_dir" property="picDir" jdbcType="VARCHAR"/>
+        <result column="op_tm" property="opTm" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+  t.id            ,
+  t.name          ,
+  t.gender        ,
+  t.cellphone     ,
+  t.status        ,
+  t.register_tm   ,
+  t.identit      ,
+  t.brithday      ,
+  t.height        ,
+  t.weight        ,
+  t.dis_type      ,
+  t.memo          ,
+  t.fit_needs     ,
+  t.coacher_id    ,
+  t.career        ,
+  t.post          ,
+  t.history       ,
+  t.pic_dir       ,
+  t.op_tm
+    </sql>
+
+
+    <select id="findAll" resultMap="traineeInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from HJ_TRAINEE_INFO AS t order by t.register_tm;
+    </select>
+
+    <select id="findByParam" resultMap="traineeInfo"
+            parameterType="com.cloudo.hj.param.TraineerParam">
+        select
+        <include refid="Base_Column_List"/>
+        from HJ_TRAINEE_INFO AS t
+        WHERE 1=1
+        <if test="id>0">
+            and t.id = #{id}
+        </if>
+        <if test="name!=null">
+            and name like #{name}
+        </if>
+        <if test="cellphone!=null">
+            and name like #{cellphone}
+        </if>
+        <if test="registTmFrom!=null">
+            <![CDATA[ AND regist_tm >= "${registTmFrom}" ]]>
+
+        </if>
+        <if test="registTmTo!=null">
+            <![CDATA[ AND regist_tm >= "${registTmTo}" ]]>
+        </if>
+    </select>
+
+
+    <insert id="save" parameterType="traineeInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO HJ_TRAINEE_INFO (
+
+  `name`          ,
+  `gender`           ,
+  `cellphone`     ,
+  `status`        ,
+  `register_tm`   ,
+  `identit`      ,
+  `brithday`      ,
+  `height`        ,
+  `weight`        ,
+  `dis_type`      ,
+  `memo`          ,
+  `fit_needs`     ,
+  `coacher_id`    ,
+  `career`        ,
+  `post`          ,
+  `history`       ,
+  `pic_dir`
+        )
+        values (
+
+  #{name},
+  #{gender},
+  #{cellphone},
+  #{status},
+  #{registerTm},
+  #{identit},
+  #{brithday},
+  #{height},
+  #{weight},
+  #{disType},
+  #{memo},
+  #{fitNeeds},
+  #{coacherId},
+  #{career},
+  #{post},
+  #{history},
+  #{picDir}
+        )
+    </insert>
+
+
+    <update id="update" parameterType="traineeInfo" >
+        UPDATE HJ_TRAINEE_INFO
+        <set>
+           <if test="name!=null">
+               name = #{name},
+           </if>
+            <if test="gender >= 0">         
+                gender = #{gender}, 
+            </if>
+            <if test="cellphone!=null">   
+                cellphone = #{cellphone},
+            </if>
+            <if test="status >= 0">       
+                status = #{status}, 
+            </if>
+            <if test="identit!=null">    
+                identit = #{identit},
+            </if>
+            <if test="brithday!=null">       
+                brithday = #{brithday},
+            </if>
+            <if test="height>0">       
+                height = #{height} ,
+            </if>
+            <if test="weight>0">      
+                t.weight = #{weight}   ,
+            </if>
+            <if test="disType>1">     
+                dis_type = #{disType} ,
+            </if>
+            <if test="memo!=null">       
+                memo = #{memo} ,
+            </if>
+            <if test="fitNeeds!=null">       
+                fit_needs = #{fitNeeds},
+            </if>
+            <if test="coacherId!=null">       
+                coacher_id = #{coacherId} ,
+            </if>
+            <if test="career!=null">       
+                career = #{career},
+            </if>
+            <if test="post!=null">        
+                post = #{post} ,
+            </if>
+            <if test="history!=null">       
+                history = #{history},
+            </if>
+            <if test="picDir!=null">        
+                pic_dir = #{picDir},
+            </if> 
+        </set>
+
+        WHERE t.id = #{id}
+
+    </update>
+
+
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE
+        FROM HJ_TRAINEE_INFO
+        WHERE id =
+        #{id}
+    </delete>
+
+    <select id="find" parameterType="java.lang.Long" resultMap="traineeInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HJ_TRAINEE_INFO AS t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="query" parameterType="traineeInfo"  resultMap="traineeInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HJ_TRAINEE_INFO AS t
+        WHERE 1=1
+        <if test="id>0">
+            and t.id = #{id}
+        </if>
+        <if test="name!=null">
+            and name like #{name}
+        </if>
+        <if test="cellphone!=null">
+            and name like #{cellphone}
+        </if>
+    </select>
+
+</mapper>

@@ -4,8 +4,8 @@
 
 
     <resultMap id="coacherInfo" type="com.cloudo.hj.domain.CoacherInfo">
-        <result column="id" property="id" jdbcType="BIGINT"/>
-        <result column="account" property="account" jdbcType="TIMESTAMP"/>
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="gender" property="gender" jdbcType="TINYINT"/>
         <result column="cellphone" property="cellphone" jdbcType="VARCHAR"/>
@@ -60,13 +60,13 @@
         , t.op_tm
     </sql>
 
-    <select id="findAll" resultType="com.cloudo.hj.domain.CoacherInfo">
+    <select id="findAll" resultMap="coacherInfo">
         select
         <include refid="Base_Column_List"/>
         from HJ_COACHER_INFO AS t order by t.order;
     </select>
 
-    <select id="findByParam" resultType="com.cloudo.hj.domain.CoacherInfo" parameterType="com.cloudo.hj.domain.CoacherInfo">
+    <select id="findByParam" resultMap="coacherInfo" parameterType="com.cloudo.hj.domain.CoacherInfo">
         select
         <include refid="Base_Column_List"/>
         from HJ_COACHER_INFO AS t
@@ -82,7 +82,7 @@
         </if>
     </select>
 
-    <select id="findSimple" resultType="com.cloudo.hj.domain.CoacherInfo" parameterType="com.cloudo.hj.domain.CoacherInfo">
+    <select id="findSimple" resultMap="coacherInfo" parameterType="com.cloudo.hj.domain.CoacherInfo">
         select
         <include refid="Simple_Column_List"/>
         from HJ_COACHER_INFO AS t
@@ -138,7 +138,7 @@
     </insert>
 
 
-    <update id="update" parameterType="com.cloudo.hj.domain.CoacherInfo">
+    <update id="update" parameterType="coacherInfo">
         UPDATE HJ_COACHER_INFO
         <set>
             <if test="account!=null">
@@ -217,7 +217,7 @@
         WHERE t.id = #{id}
     </select>
 
-    <select id="query" parameterType="com.cloudo.hj.domain.CoacherInfo" resultMap="coacherInfo">
+    <select id="query" parameterType="coacherInfo" resultMap="coacherInfo">
         SELECT
         <include refid="Base_Column_List"/>
         FROM HJ_COACHER_INFO AS t

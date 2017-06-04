@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by cloudoo on 2017/5/20.
  */
+@Deprecated
 public class FitnessInfo implements Serializable {
 
     private Long id;

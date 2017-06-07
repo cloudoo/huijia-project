@@ -19,7 +19,7 @@ CREATE TABLE `hj_coacher_info` (
   `pic_dir` varchar(200) DEFAULT NULL,
   `op_tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 drop table hj_course_info;
 
@@ -38,7 +38,7 @@ CREATE TABLE `hj_course_info` (
   `op_tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ;
 
 drop TABLE hj_trainee_info;
 
@@ -48,7 +48,7 @@ CREATE TABLE `hj_trainee_info` (
   `gender` int(11) DEFAULT '0',
   `cellphone` varchar(45) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '-1',
-  `register_tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `register_tm` timestamp   NULL ,
   `identit` varchar(45) DEFAULT NULL,
   `brithday` date DEFAULT NULL,
   `height` float DEFAULT NULL,
@@ -61,6 +61,6 @@ CREATE TABLE `hj_trainee_info` (
   `post` varchar(45) DEFAULT NULL,
   `history` varchar(1000) DEFAULT NULL,
   `pic_dir` varchar(500) DEFAULT NULL,
-  `op_tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `op_tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,8 +22,8 @@ import java.util.List;
  *
  *
  */
-@Repository(value = "coacherInfoService")
-public class CoacherInfoService extends AbstractBaseService<CoacherInfo> implements ICoacherInfoService {
+@Service(value = "coacherInfoService")
+public class CoacherInfoService extends AbstractBaseService<CoacherInfo,CoacherInfo> implements ICoacherInfoService {
 
     /** 子类也可以使用的通用Logger */
     protected final Logger logger = LoggerFactory.getLogger(getClass());

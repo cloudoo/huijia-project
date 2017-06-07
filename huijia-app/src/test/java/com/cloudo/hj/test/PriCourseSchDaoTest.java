@@ -2,6 +2,7 @@ package com.cloudo.hj.test;
 
 import com.cloudo.hj.dao.PriCourseSchInfoDao;
 import com.cloudo.hj.domain.PriCourseSchInfo;
+import com.cloudo.hj.param.CourseParam;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,27 +30,27 @@ public class PriCourseSchDaoTest {
 
 
         PriCourseSchInfo priCourseSchInfo = new PriCourseSchInfo();
-        priCourseSchInfo.setShopName("测试店");
+        priCourseSchInfo.setShopName("海珠区荟佳店");
         priCourseSchInfo.setCoacherId(2l);
         priCourseSchInfo.setCourseId(2l);
 
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR,2017);
-        calendar.set(Calendar.MONDAY,6);
+        calendar.set(Calendar.MONTH,5);
         calendar.set(Calendar.DAY_OF_MONTH,6);
         Date strdate = new Date(calendar.getTimeInMillis());
 
         priCourseSchInfo.setSchStartDt(strdate);
 
         calendar.set(Calendar.YEAR,2017);
-        calendar.set(Calendar.MONDAY,6);
+        calendar.set(Calendar.MONTH,9);
         calendar.set(Calendar.DAY_OF_MONTH,11);
         Date endDate = new Date(calendar.getTimeInMillis());
 
         priCourseSchInfo.setSchEndDt(endDate);
 
-        priCourseSchInfo.setStartTm("10:00");
+        priCourseSchInfo.setStartTm("9:00");
         priCourseSchInfo.setEndTm("11:00");
         priCourseSchInfo.setWeeks("4,5,6");
         int i = priCourseSchInfoDao.save(priCourseSchInfo);
@@ -81,7 +82,24 @@ public class PriCourseSchDaoTest {
 
         Assert.assertNotNull(coacherInfoList);
 
+        CourseParam param = new CourseParam();
+        param.setShopName("测试");
+        List<PriCourseSchInfo> list = priCourseSchInfoDao.findByParam(param);
 
+        Assert.assertNotNull(list);
+
+        param = new CourseParam();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR,2017);
+        calendar.set(Calendar.MONTH,5);
+        calendar.set(Calendar.DAY_OF_MONTH,13);
+        Date strdate = new Date(calendar.getTimeInMillis());
+
+        param.setSchFrom(strdate);
+        list = priCourseSchInfoDao.findByParam(param);
+
+        Assert.assertNotNull(list);
 
     }
 

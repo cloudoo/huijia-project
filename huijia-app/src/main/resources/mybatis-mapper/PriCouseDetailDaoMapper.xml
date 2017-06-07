@@ -20,7 +20,7 @@
 
     <sql id="Base_Column_List">
         t.id
-      t.sch_cour_id
+        ,t.sch_cour_id
         , t.shop_name
         , t.coacher_id
         , t.course_id
@@ -45,7 +45,7 @@
         AS t order by t.op_tm;
     </select>
 
-    <select id="findByParam" resultMap="priCourseDetail" parameterType="com.cloudo.hj.domain.PriCourseDetail">
+    <select id="findByParam" resultMap="priCourseDetail" parameterType="com.cloudo.hj.param.CourseParam">
         select
         <include refid="Base_Column_List"/>
         from <include refid="table_name"/> AS t
@@ -53,8 +53,14 @@
         <if test="id>0">
             and t.id =   #{id}
         </if>
+        <if test="coacherId!=null">
+            and t.coacher_id = #{coacherId}
+        </if>
+        <if test="courseDate!=null">
+            and t.course_date = #{courseDate}
+        </if>
         <if test="shopName!=null">
-            and shop_name like #{shopName}
+            and t.shop_name like "%"#{shopName}"%"
         </if>
     </select>
 

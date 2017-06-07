@@ -47,7 +47,7 @@
         AS t order by t.op_tm;
     </select>
 
-    <select id="findByParam" resultMap="priCourseSchInfo" parameterType="com.cloudo.hj.domain.PriCourseSchInfo">
+    <select id="findByParam" resultMap="priCourseSchInfo" parameterType="com.cloudo.hj.param.CourseParam">
         select
         <include refid="Base_Column_List"/>
         from <include refid="table_name"/> AS t
@@ -55,11 +55,17 @@
         <if test="id>0">
             and t.id =   #{id}
         </if>
-        <if test="name!=null">
-            and name like #{name}
+        <if test="coacherId!=null">
+            and t.coacher_id =   #{coacherId}
         </if>
-        <if test="cellphone!=null">
-            and cellphone like #{cellphone}
+        <if test="shopName!=null">
+            and t.shop_name like "%"#{shopName}"%"
+        </if>
+        <if test="schFrom!=null">
+            and sch_end_dt &gt;= #{schFrom}
+        </if>
+        <if test="schTo!=null">
+            and sch_start_dt &lt;= #{schTo}
         </if>
     </select>
 

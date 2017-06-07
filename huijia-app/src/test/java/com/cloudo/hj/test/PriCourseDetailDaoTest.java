@@ -4,6 +4,7 @@ import com.cloudo.hj.dao.PriCourseDetailDao;
 import com.cloudo.hj.dao.PriCourseSchInfoDao;
 import com.cloudo.hj.domain.PriCourseDetail;
 import com.cloudo.hj.domain.PriCourseSchInfo;
+import com.cloudo.hj.param.CourseParam;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,8 +78,19 @@ public class PriCourseDetailDaoTest {
 
         Assert.assertNotNull(coacherInfoList);
 
+        CourseParam param = new CourseParam();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR,2017);
+        calendar.set(Calendar.MONDAY,5);
+        calendar.set(Calendar.DAY_OF_MONTH,14);
+        Date strdate = new Date(calendar.getTimeInMillis());
 
 
+        param.setCoacherId(2l);
+        param.setCourseDate(strdate);
+        coacherInfoList = priCourseDetailDao.findByParam(param);
+        Assert.assertNotNull(coacherInfoList);
     }
 
     public PriCourseDetail genPriCourseDetailObject(){

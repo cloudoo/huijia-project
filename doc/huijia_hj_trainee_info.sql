@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `huijia` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `huijia` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `huijia`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
@@ -30,7 +30,7 @@ CREATE TABLE `hj_trainee_info` (
   `gender` int(11) DEFAULT '-1',
   `cellphone` varchar(45) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '-1',
-  `register_tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `register_tm` timestamp  NULL ,
   `identit` varchar(45) DEFAULT NULL,
   `brithday` date DEFAULT NULL,
   `height` float DEFAULT NULL,

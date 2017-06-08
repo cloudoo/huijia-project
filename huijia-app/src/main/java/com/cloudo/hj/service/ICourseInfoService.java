@@ -1,6 +1,6 @@
 package com.cloudo.hj.service;
 
-import com.cloudo.hj.domain.CoacherInfo;
+
 import com.cloudo.hj.domain.CourseInfo;
 import com.cloudo.hj.param.CourseParam;
 

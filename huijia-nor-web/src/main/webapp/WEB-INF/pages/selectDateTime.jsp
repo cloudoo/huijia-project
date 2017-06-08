@@ -264,14 +264,15 @@
             <div class="container">
                 <input type="submit" value="提交" id="submit_btn" class="hidden" />
                 <div id="ajax_loading" class="ajax_loading"></div>
-                <a href="<c:url value='/course/privatebook.hj' />" class="btn btn-primary">下一步</a>
+                <a id="privatebook" href="<c:url value='/course/privatebook.hj' />" class="btn btn-primary">下一步</a>
             </div>
         </div>
     </form>
 
     <script src="<c:url value='/includes/lib.min.js'/>" type="text/javascript"></script>
     <script src="<c:url value='/includes/main.debug.js?v=4241650'/>"></script>
-
+    <script src="<c:url value='/includes/jquery-1.10.2.min.js'/>"></script>
+    <script src="<c:url value='/includes/hj/selectDateTime.js' />"></script>
 
 </body>
 

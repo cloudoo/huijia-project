@@ -24,4 +24,5 @@ public class TraineeInfoService extends AbstractBaseService<TraineeInfo,Traineer
     public void setBaseDao(TraineeInfoDao baseDao){
         this.baseDao = baseDao;
     }
+
 }

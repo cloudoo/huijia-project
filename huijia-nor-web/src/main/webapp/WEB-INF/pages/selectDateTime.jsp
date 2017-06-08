@@ -18,11 +18,12 @@
 </head>
 
 <body >
-    <form method="post" action="<c:url value='/course/privatebook.hj' /> ">
+    <form id="selectCourseForm" method="post" action="<c:url value='/course/privatebook.hj' /> ">
 
         <input type="hidden" name='day' id="today" value="" />
         <input type="hidden" name='time' id="time" value="" />
         <input type="hidden" name='selectdate' id="selectdate" value="" />
+        <input type="hidden" name="courseId" id="courseId" value="" />
 
         <div class="calendar-title head flex">
             <a href="javascript:;" class="col on" data-datetime=''></a>
@@ -40,223 +41,16 @@
         <div class="tab-content" id="calendar">
             <div class="tab-pane active">
                 <ul class="plan">
+                    <c:forEach items="details" var="course" >
                     <li>
-                        <a href="javascript:;" time="08:00">
-                            <span>08:00</span>
+                        <a id="selectTime" href="javascript:;" time="${course.startTm}">
+                            <input type="hidden"  value="${couse.id}" />
+                            <span>${course.startTm}-${course.endTm}</span>
                             <em></em>
                         </a>
                     </li>
                     <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="08:30">
-                            <span>08:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="09:00">
-                            <span>09:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="09:30" >
-                            <span>09:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="10:00" >
-                            <span>10:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="10:30" >
-                            <span>10:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="11:00" >
-                            <span>11:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="11:30" >
-                            <span>11:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="12:00">
-                            <span>12:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="12:30" >
-                            <span>12:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="13:00">
-                            <span>13:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="13:30" >
-                            <span>13:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="14:00" >
-                            <span>14:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="14:30" >
-                            <span>14:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="15:00" >
-                            <span>15:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="15:30" >
-                            <span>15:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="16:00" >
-                            <span>16:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="16:30" >
-                            <span>16:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="17:00" >
-                            <span>17:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="17:30" >
-                            <span>17:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="18:00" >
-                            <span>18:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="18:30" >
-                            <span>18:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="19:00" >
-                            <span>19:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="19:30">
-                            <span>19:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="20:00">
-                            <span>20:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="20:30">
-                            <span>20:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="21:00" >
-                            <span>21:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="21:30" >
-                            <span>21:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="22:00">
-                            <span>22:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="22:30" >
-                            <span>22:30</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
-                    <li>
-                        <a href="javascript:;" time="23:00" >
-                            <span>23:00</span>
-                            <em></em>
-                        </a>
-                    </li>
-                    <li class="fix"></li>
+                    </c:forEach>
                 </ul>
             </div>
         </div>

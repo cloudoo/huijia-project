@@ -52,7 +52,10 @@ public class CourseController {
 	}
 
 	@RequestMapping("/privatebook.hj")
-	public String privatebook(Model model,HttpServletRequest request){
+	public String privatebook(String courseId,Model model,HttpServletRequest request){
+
+
+
 
 		return "selectCourse";
 	}

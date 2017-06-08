@@ -11,12 +11,13 @@ public class ReservationInfo implements Serializable {
     private Long id;
 
     private Timestamp startTm;
-    private TraineeInfo traineeInfo;
-    private CoacherInfo coacherInfo;
-    private CourseInfo courseInfo;
+    private String shopName;
+    private Long traineeId;
+    private Long coacherId;
+    private Long courseId;
     private String type;
     private int status;
-    private Timestamp registDt;
+    private Timestamp reservaTm;
     private Timestamp cancelTm;
     private String cancelReason;
     private String cards;
@@ -37,28 +38,36 @@ public class ReservationInfo implements Serializable {
         this.startTm = startTm;
     }
 
-    public TraineeInfo getTraineeInfo() {
-        return traineeInfo;
+    public String getShopName() {
+        return shopName;
     }
 
-    public void setTraineeInfo(TraineeInfo traineeInfo) {
-        this.traineeInfo = traineeInfo;
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
-    public CoacherInfo getCoacherInfo() {
-        return coacherInfo;
+    public Long getTraineeId() {
+        return traineeId;
     }
 
-    public void setCoacherInfo(CoacherInfo coacherInfo) {
-        this.coacherInfo = coacherInfo;
+    public void setTraineeId(Long traineeId) {
+        this.traineeId = traineeId;
     }
 
-    public CourseInfo getCourseInfo() {
-        return courseInfo;
+    public Long getCoacherId() {
+        return coacherId;
     }
 
-    public void setCourseInfo(CourseInfo courseInfo) {
-        this.courseInfo = courseInfo;
+    public void setCoacherId(Long coacherId) {
+        this.coacherId = coacherId;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
     }
 
     public String getType() {
@@ -77,12 +86,12 @@ public class ReservationInfo implements Serializable {
         this.status = status;
     }
 
-    public Timestamp getRegistDt() {
-        return registDt;
+    public Timestamp getReservaTm() {
+        return reservaTm;
     }
 
-    public void setRegistDt(Timestamp registDt) {
-        this.registDt = registDt;
+    public void setReservaTm(Timestamp reservaTm) {
+        this.reservaTm = reservaTm;
     }
 
     public Timestamp getCancelTm() {

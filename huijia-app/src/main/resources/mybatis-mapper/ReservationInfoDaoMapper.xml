@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudo.hj.dao.ReservationInfoDao">
+
+    <resultMap id="reservationInfo" type="com.cloudo.hj.domain.ReservationInfo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="start_tm" property="startTm" jdbcType="TIMESTAMP"/>
+        <result column="shop_name" property="shopName" jdbcType="VARCHAR"/>
+        <result column="trainee_id" property="traineeId" jdbcType="BIGINT"/>
+        <result column="coacher_id" property="coacherId" jdbcType="BIGINT"/>
+        <result column="course_id" property="courseId" jdbcType="BIGINT"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="reserva_tm" property="reservaTm" jdbcType="TIMESTAMP"/>
+        <result column="cancel_tm" property="cancelTm" jdbcType="TIMESTAMP"/>
+        <result column="cancel_reason" property="cancelReason" jdbcType="VARCHAR" />
+        <result column="cards" property="cards" jdbcType="VARCHAR" />
+        <result column="op_tm" property="opTm" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        t.id
+        , t.start_tm
+        , t.shop_name
+        , t.trainee_id
+        , t.coacher_id
+        , t.course_id
+        , t.type
+        , t.status
+        , t.reserva_tm
+        , t.cancel_tm
+        , t.cancel_reason
+        , t.cards
+        , t.op_tm
+    </sql>
+
+    <sql id="table_name">
+        hj_reservation_info
+    </sql>
+
+    <select id="findAll" resultMap="courseInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from <include refid="table_name"/>  AS t order by t.op_tm;
+    </select>
+
+    <select id="findByParam" resultMap="reservationInfo"
+            parameterType="com.cloudo.hj.domain.ReservationInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from <include refid="table_name"/> AS t
+        WHERE 1=1
+        <if test="id>0">
+            and t.id = #{id}
+        </if>
+        <if test="shopName!=null">
+            and t.shop_name like "%"#{shopName}"%"
+        </if>
+        <if test="bookFrom!=null">
+            and t.reserva_tm &gt;= #{bookFrom}
+        </if>
+        <if test="bookTo!=null">
+            and t.reserva_tm &lt;= #{bookTo}
+        </if>
+    </select>
+
+
+    <insert id="save" parameterType="com.cloudo.hj.domain.ReservationInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO <include refid="table_name"/> (
+        start_tm
+        , shop_name
+        , trainee_id
+        , coacher_id
+        , course_id
+        , type
+        , status
+        , reserva_tm
+        , cancel_tm
+        , cancel_reason
+        , cards
+        )
+        values (
+        #{startTm},
+        #{shopName},
+        #{traineeId},
+        #{coacherId},
+        #{courseId},
+        #{type},
+        #{status},
+        #{reservaTm},
+        #{cancelTm},
+        #{cancelReason},
+        #{cards})
+    </insert>
+
+<!-- FIXME: 下面没有改完-->
+    <update id="update" parameterType="com.cloudo.hj.domain.ReservationInfo">
+        UPDATE <include refid="table_name"/>
+        <set>
+            <if test="startTm!=null">
+                `start_tm` = #{startTm},
+            </if>
+            <if test="type>0">
+                `type` = #{type},
+            </if>
+            <if test="coverDir != null ">
+                `cover_dir` = #{coverDir},
+            </if>
+            <if test="min > 0">
+                `min` = #{min},
+            </if>
+            <if test="max > 0">
+                `type` = #{type},
+            </if>
+            <if test="normalCost>0">
+                `normal_cost` = #{normalCost},
+            </if>
+            <if test="costDesc!=null">
+                `costDesc` = #{costDesc},
+            </if>
+            <if test="courseDesc !=null ">
+                `courseDesc` = #{courseDesc} ,
+            </if>
+            <if test="valid != null">
+                `valid` = #{valid} ,
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--    <update id="updateByParam" parameterType="com.cloudo.hj.domain.CoacherInfo">
+            UPDATE HJ_COACHER_INFO
+            SET
+            `value` = #{value}
+            WHERE `code` = #{code} and `type` = #{type}
+        </update>-->
+
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE
+        FROM <include refid="table_name"/>
+        WHERE id =
+        #{id}
+    </delete>
+
+    <select id="find" parameterType="java.lang.Long" resultMap="courseInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM  <include refid="table_name"/>  AS t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="query" parameterType="com.cloudo.hj.domain.CourseInfo" resultMap="courseInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM <include refid="table_name"/> AS t
+        WHERE 1=1
+        <if test="id!=null">
+            and t.id = #{id}
+        </if>
+        <if test="code!=null">
+            and t.code = #{code}
+        </if>
+        <if test="value!=null">
+            and t.value = #{value}
+        </if>
+        <if test="type!=null">
+            and t.type = #{type}
+        </if>
+    </select>
+
+</mapper>

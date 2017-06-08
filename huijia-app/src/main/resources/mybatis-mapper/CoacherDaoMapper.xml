@@ -75,10 +75,10 @@
             and t.id =   #{id}
         </if>
         <if test="name!=null">
-            and name like #{name}
+            and name like "%"#{name}"%"
         </if>
         <if test="cellphone!=null">
-            and cellphone like #{cellphone}
+            and cellphone like "%"#{cellphone}"%"
         </if>
     </select>
 
@@ -91,10 +91,10 @@
             and t.id =   #{id}
         </if>
         <if test="name!=null">
-            and name like #{name}
+            and name like "%"#{name}"%"
         </if>
         <if test="cellphone!=null">
-            and cellphone like #{cellphone}
+            and cellphone like "%"#{cellphone}"%"
         </if>
     </select>
 

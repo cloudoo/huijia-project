@@ -24,7 +24,7 @@
         <input type="hidden" name='time' id="time" value="" />
         <input type="hidden" name='selectdate' id="selectdate" value="" />
         <input type="hidden" name="courseId" id="courseId" value="" />
-
+        <input type="hidden" name="coacherId" id="coacherId" value="" />
         <div class="calendar-title head flex">
             <a href="javascript:;" class="col on" data-datetime=''></a>
             <a href="javascript:;" class="col" data-datetime=''></a>

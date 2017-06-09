@@ -39,7 +39,7 @@
         hj_reservation_info
     </sql>
 
-    <select id="findAll" resultMap="courseInfo">
+    <select id="findAll" resultMap="reservationInfo">
         select
         <include refid="Base_Column_List"/>
         from <include refid="table_name"/>  AS t order by t.op_tm;
@@ -95,36 +95,42 @@
         #{cards})
     </insert>
 
-<!-- FIXME: 下面没有改完-->
+
     <update id="update" parameterType="com.cloudo.hj.domain.ReservationInfo">
         UPDATE <include refid="table_name"/>
         <set>
             <if test="startTm!=null">
                 `start_tm` = #{startTm},
             </if>
-            <if test="type>0">
+            <if test="shopName!=null">
+                `shop_name` = #{shopName},
+            </if>
+            <if test="traineeId !=null  ">
+                `trainee_id` = #{traineeId},
+            </if>
+            <if test="coacherId !=null">
+                `coacher_id` = #{coacherId},
+            </if>
+            <if test="courseId !=null">
+                `course_id` = #{courseId},
+            </if>
+            <if test="type !=null">
                 `type` = #{type},
             </if>
-            <if test="coverDir != null ">
-                `cover_dir` = #{coverDir},
+            <if test="status!=null">
+                `status` = #{status},
             </if>
-            <if test="min > 0">
-                `min` = #{min},
+            <if test="reservaTm !=null ">
+                `reserva_tm` = #{reservaTm} ,
             </if>
-            <if test="max > 0">
-                `type` = #{type},
+            <if test="cancelTm != null">
+                `cancel_tm` = #{cancelTm} ,
             </if>
-            <if test="normalCost>0">
-                `normal_cost` = #{normalCost},
+            <if test="cancelReason != null">
+                `cancel_reason` = #{cancelReason} ,
             </if>
-            <if test="costDesc!=null">
-                `costDesc` = #{costDesc},
-            </if>
-            <if test="courseDesc !=null ">
-                `courseDesc` = #{courseDesc} ,
-            </if>
-            <if test="valid != null">
-                `valid` = #{valid} ,
+            <if test="cards != null">
+                `cards` = #{cards} ,
             </if>
         </set>
         WHERE id = #{id}
@@ -143,31 +149,15 @@
         WHERE id =
         #{id}
     </delete>
-
-    <select id="find" parameterType="java.lang.Long" resultMap="courseInfo">
+    <!-- FIXME: 下面没有改完-->
+    <select id="find" parameterType="java.lang.Long" resultMap="reservationInfo">
         SELECT
         <include refid="Base_Column_List"/>
         FROM  <include refid="table_name"/>  AS t
         WHERE t.id = #{id}
     </select>
 
-    <select id="query" parameterType="com.cloudo.hj.domain.CourseInfo" resultMap="courseInfo">
-        SELECT
-        <include refid="Base_Column_List"/>
-        FROM <include refid="table_name"/> AS t
-        WHERE 1=1
-        <if test="id!=null">
-            and t.id = #{id}
-        </if>
-        <if test="code!=null">
-            and t.code = #{code}
-        </if>
-        <if test="value!=null">
-            and t.value = #{value}
-        </if>
-        <if test="type!=null">
-            and t.type = #{type}
-        </if>
-    </select>
+
+    <!-- FIXME: 下面没有改完-->
 
 </mapper>

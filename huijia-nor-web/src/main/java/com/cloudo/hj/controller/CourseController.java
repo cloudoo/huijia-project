@@ -1,9 +1,11 @@
 package com.cloudo.hj.controller;
 
 import com.cloudo.hj.domain.PriCourseDetail;
+import com.cloudo.hj.domain.ReservationInfo;
 import com.cloudo.hj.param.CourseParam;
 import com.cloudo.hj.service.ICourseInfoService;
 import com.cloudo.hj.service.IPriCourseDetailService;
+import com.cloudo.hj.service.IReservationInfoService;
 import com.cloudo.hj.serviceimpl.CourseInfoService;
 import com.cloudo.hj.util.DateUtils;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class CourseController {
 
 	@Resource(name = "priCourseDetailService")
 	private IPriCourseDetailService priCourseDetailService;
+
+	@Resource(name="reservationInfoService")
+	private IReservationInfoService reservationInfoService;
 
 	@RequestMapping("/commonlist.hj")
 	public String listInfo(Model model, HttpServletRequest request){
@@ -46,7 +51,7 @@ public class CourseController {
 		List<PriCourseDetail> detailList = priCourseDetailService.findByParam(param);
 
 		model.addAttribute("details",detailList);
-
+        model.addAttribute("coacherId",coacherId);
 
 		return "selectDateTime";
 	}
@@ -54,7 +59,10 @@ public class CourseController {
 	@RequestMapping("/privatebook.hj")
 	public String privatebook(String courseId,Model model,HttpServletRequest request){
 
-
+		ReservationInfo reservationInfo = new ReservationInfo();
+		reservationInfo.setCourseId(Long.parseLong(courseId));
+		reservationInfo.setCoacherId();
+		reservationInfoService.save();
 
 
 		return "selectCourse";

@@ -21,7 +21,7 @@ public class ReservationInfo implements Serializable {
     private Timestamp cancelTm;
     private String cancelReason;
     private String cards;
-
+    private Timestamp opTm;
     public Long getId() {
         return id;
     }
@@ -116,5 +116,13 @@ public class ReservationInfo implements Serializable {
 
     public void setCards(String cards) {
         this.cards = cards;
+    }
+
+    public Timestamp getOpTm() {
+        return opTm;
+    }
+
+    public void setOpTm(Timestamp opTm) {
+        this.opTm = opTm;
     }
 }

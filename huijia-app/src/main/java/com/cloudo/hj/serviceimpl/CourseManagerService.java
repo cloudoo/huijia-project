@@ -1,18 +1,13 @@
 package com.cloudo.hj.serviceimpl;
 
-import com.cloudo.hj.dao.CourseInfoDao;
 import com.cloudo.hj.dao.PriCourseDetailDao;
 import com.cloudo.hj.dao.PriCourseSchInfoDao;
-import com.cloudo.hj.domain.CoacherInfo;
 import com.cloudo.hj.domain.PriCourseDetail;
 import com.cloudo.hj.domain.PriCourseSchInfo;
 import com.cloudo.hj.param.CourseParam;
-import com.cloudo.hj.service.ICoacherInfoService;
 import com.cloudo.hj.service.ICourseManagerService;
-import com.cloudo.hj.service.IPriCourseSchInfoService;
-import org.apache.commons.lang.time.DateUtils;
+import com.cloudo.hj.util.HuiJiaUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -44,11 +39,11 @@ public class CourseManagerService implements ICourseManagerService {
 //FIXME:目前只考虑时间上的冲突，即默认只有一个培训教室
         if(schInfos!=null&&schInfos.size()>0){
             for(PriCourseSchInfo schInfo:schInfos){
-                if((compareTime(schInfo.getStartTm(),priCourseSchInfo.getStartTm())<=0
-                        &&compareTime(schInfo.getEndTm(),priCourseSchInfo.getStartTm())>0)
+                if((HuiJiaUtils.compareTime(schInfo.getStartTm(),priCourseSchInfo.getStartTm())<=0
+                        &&HuiJiaUtils.compareTime(schInfo.getEndTm(),priCourseSchInfo.getStartTm())>0)
                       ||
-                        (compareTime(schInfo.getStartTm(),priCourseSchInfo.getEndTm())<0
-                                &&compareTime(schInfo.getEndTm(),priCourseSchInfo.getEndTm())>=0)
+                        (HuiJiaUtils.compareTime(schInfo.getStartTm(),priCourseSchInfo.getEndTm())<0
+                                &&HuiJiaUtils.compareTime(schInfo.getEndTm(),priCourseSchInfo.getEndTm())>=0)
                         ){
                     return false;
                 }
@@ -127,29 +122,7 @@ public class CourseManagerService implements ICourseManagerService {
         return datas;
     }
 
-    public  int compareTime(String aTm,String bTm){
 
-        String[] aTms = aTm.split(":");
-        int ah = Integer.parseInt(aTms[0]);
-        int am = Integer.parseInt(aTms[1]);
-        String[] bTms = bTm.split(":");
-        int bh = Integer.parseInt(bTms[0]);
-        int bm = Integer.parseInt(bTms[1]);
-        if(ah<bh){
-            return  -1;
-        }else if(ah>bh){
-            return 1;
-        }else if(ah==bh){
-            if(am==bm){
-                return 0;
-            }else if(am>bm){
-                return 1;
-            }else{
-                return -1;
-            }
-        }
-        return 0;
-    }
 
     public static void main(String[] args) {
         CourseManagerService courseManagerService = new CourseManagerService();
@@ -170,10 +143,10 @@ public class CourseManagerService implements ICourseManagerService {
 //           System.out.println(date.toString());
 //        }
 
-        System.out.println(courseManagerService.compareTime("8:00","9:11"));
-        System.out.println(courseManagerService.compareTime("9:10","13:11"));
-        System.out.println(courseManagerService.compareTime("13:24","13:11"));
-        System.out.println(courseManagerService.compareTime("13:24","13:24"));
+        System.out.println(HuiJiaUtils.compareTime("8:00","9:11"));
+        System.out.println(HuiJiaUtils.compareTime("9:10","13:11"));
+        System.out.println(HuiJiaUtils.compareTime("13:24","13:11"));
+        System.out.println(HuiJiaUtils.compareTime("13:24","13:24"));
 
 
 

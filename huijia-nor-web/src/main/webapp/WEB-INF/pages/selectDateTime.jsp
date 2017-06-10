@@ -18,13 +18,12 @@
 </head>
 
 <body >
-    <form id="selectCourseForm" method="post" action="<c:url value='/course/privatebook.hj' /> ">
+    <form id="selectCourseForm" method="post" action="<c:url value='/course/selectcourse.hj' /> ">
 
         <input type="hidden" name='day' id="today" value="" />
         <input type="hidden" name='time' id="time" value="" />
         <input type="hidden" name='selectdate' id="selectdate" value="" />
-        <input type="hidden" name="courseId" id="courseId" value="" />
-        <input type="hidden" name="coacherId" id="coacherId" value="" />
+        <input type="hidden" name="coacherId" id="coacherId" value="${coacherId}" />
         <div class="calendar-title head flex">
             <a href="javascript:;" class="col on" data-datetime=''></a>
             <a href="javascript:;" class="col" data-datetime=''></a>
@@ -41,11 +40,10 @@
         <div class="tab-content" id="calendar">
             <div class="tab-pane active">
                 <ul class="plan">
-                    <c:forEach items="details" var="course" >
+                    <c:forEach items="${selectTimes}" var="time" >
                     <li>
-                        <a id="selectTime" href="javascript:;" time="${course.startTm}">
-                            <input type="hidden"  value="${couse.id}" />
-                            <span>${course.startTm}-${course.endTm}</span>
+                        <a  href="javascript:;" time="${time}">
+                            <span>${time}</span>
                             <em></em>
                         </a>
                     </li>
@@ -58,14 +56,14 @@
             <div class="container">
                 <input type="submit" value="提交" id="submit_btn" class="hidden" />
                 <div id="ajax_loading" class="ajax_loading"></div>
-                <a id="privatebook" href="<c:url value='/course/privatebook.hj' />" class="btn btn-primary">下一步</a>
+                <a id="privatebook" class="btn btn-primary">下一步</a>
             </div>
         </div>
     </form>
 
+    <script src="<c:url value='/includes/jquery-1.10.2.min.js'/>"></script>
     <script src="<c:url value='/includes/lib.min.js'/>" type="text/javascript"></script>
     <script src="<c:url value='/includes/main.debug.js?v=4241650'/>"></script>
-    <script src="<c:url value='/includes/jquery-1.10.2.min.js'/>"></script>
     <script src="<c:url value='/includes/hj/selectDateTime.js' />"></script>
 
 </body>

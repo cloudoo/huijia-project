@@ -18,6 +18,19 @@
         <result column="op_tm" property="opTm" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <resultMap id="priCourseVo" type="com.cloudo.hj.vo.PriCourseVo">
+
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="cover_dir" property="imgSrc" jdbcType="VARCHAR"/>
+        <result column="start_tm" property="startTm" jdbcType="VARCHAR"/>
+        <result column="end_tm" property="endTm" jdbcType="VARCHAR" />
+        <result column="size" property="size" jdbcType="TINYINT"/>
+        <result column="course_date" property="courseDate" jdbcType="DATE"/>
+        <result column="duration" property="dura" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
     <sql id="Base_Column_List">
         t.id
         ,t.sch_cour_id
@@ -64,18 +77,22 @@
         </if>
     </select>
 
-    <select id="findSimple" resultMap="priCourseDetail" parameterType="com.cloudo.hj.domain.PriCourseDetail">
-        select
-        <include refid="Base_Column_List"/>
-        from <include refid="table_name"/> AS t
-        WHERE 1=1
-        <if test="id>0">
-            and t.id =   #{id}
-        </if>
-        <if test="shopName!=null">
-            and shop_name like #{shopName}
+    <select id="findSimple" resultMap="priCourseVo" parameterType="com.cloudo.hj.param.CourseParam">
+         select t.id,t.course_date,t.size,t.start_tm,t.end_tm, s.name,s.cover_dir,s.duration from hj_pri_cour_detail_info as t ,hj_course_info as s where t.course_id = s.id
+
+        <if test="id!=null">
+            and t.id = ${id}
         </if>
 
+        <if test="coacherId!=null">
+            and t.coacher_id = #{coacherId}
+        </if>
+        <if test="courseDate!=null">
+            and t.course_date = #{courseDate}
+        </if>
+        <if test="shopName!=null">
+            and t.shop_name like "%"#{shopName}"%"
+        </if>
     </select>
 
     <insert id="save" parameterType="com.cloudo.hj.domain.PriCourseDetail" useGeneratedKeys="true"

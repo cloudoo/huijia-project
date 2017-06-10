@@ -8,6 +8,9 @@ import java.sql.Timestamp;
  */
 public class ReservationInfo implements Serializable {
 
+    public static String PRIVATE_COURSE = "PC";
+    public static String COMMON_COURSE = "CC";
+    public static String FREE_STYLE = "FS";
     private Long id;
 
     private Timestamp startTm;

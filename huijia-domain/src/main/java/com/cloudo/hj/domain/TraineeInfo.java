@@ -11,6 +11,7 @@ import java.sql.Date;
 public class TraineeInfo implements Serializable {
 
     private Long id;
+    private String wxOpenId; //微信openid
     private String name;
     private int gender = -1;//0 男，1 女
 
@@ -25,6 +26,7 @@ public class TraineeInfo implements Serializable {
     private Float weight;//体重
     private int disType = 1;//到店距离类型 1：1公里以内，2：1～2公里，3:2～3公里，4:3～5公里，5：5公里以上
     private String memo;//备注信息
+
 
     private String fitNeeds;//健身需求
     private Long coacherId =  null;//主教练信息

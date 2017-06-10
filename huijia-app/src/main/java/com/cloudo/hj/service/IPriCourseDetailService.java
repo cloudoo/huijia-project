@@ -2,6 +2,7 @@ package com.cloudo.hj.service;
 
 import com.cloudo.hj.domain.PriCourseDetail;
 import com.cloudo.hj.param.CourseParam;
+import com.cloudo.hj.vo.PriCourseVo;
 
 import java.util.List;
 
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface IPriCourseDetailService extends CrudService<PriCourseDetail,CourseParam>{
 
+    public String[] findPriCourseTimeRange(CourseParam param);
+    public List<PriCourseVo> findSimple(CourseParam param);
 }

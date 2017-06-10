@@ -1,7 +1,7 @@
 package com.cloudo.hj.dao;
 
+import com.cloudo.hj.vo.PriCourseVo;
 import com.cloudo.hj.domain.PriCourseDetail;
-import com.cloudo.hj.domain.PriCourseSchInfo;
 import com.cloudo.hj.param.CourseParam;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -17,5 +17,6 @@ public interface PriCourseDetailDao extends BaseDao<PriCourseDetail,CourseParam>
 
     public int saveList(@Param(value="courList") List<PriCourseDetail> courList);
 
+    public List<PriCourseVo> findSimple(CourseParam param);
 
 }

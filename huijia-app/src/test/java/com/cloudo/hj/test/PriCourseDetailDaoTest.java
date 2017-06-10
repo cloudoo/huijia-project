@@ -1,10 +1,9 @@
 package com.cloudo.hj.test;
 
 import com.cloudo.hj.dao.PriCourseDetailDao;
-import com.cloudo.hj.dao.PriCourseSchInfoDao;
 import com.cloudo.hj.domain.PriCourseDetail;
-import com.cloudo.hj.domain.PriCourseSchInfo;
 import com.cloudo.hj.param.CourseParam;
+import com.cloudo.hj.vo.PriCourseVo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -82,8 +81,8 @@ public class PriCourseDetailDaoTest {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR,2017);
-        calendar.set(Calendar.MONDAY,5);
-        calendar.set(Calendar.DAY_OF_MONTH,14);
+        calendar.set(Calendar.MONDAY,6);
+        calendar.set(Calendar.DAY_OF_MONTH,6);
         Date strdate = new Date(calendar.getTimeInMillis());
 
 
@@ -91,6 +90,16 @@ public class PriCourseDetailDaoTest {
         param.setCourseDate(strdate);
         coacherInfoList = priCourseDetailDao.findByParam(param);
         Assert.assertNotNull(coacherInfoList);
+
+        param = new CourseParam();
+//        param.setId(31l);
+        param.setCourseDate(strdate);
+        param.setTime("10:30");
+
+        List<PriCourseVo> vos = priCourseDetailDao.findSimple(param);
+
+        Assert.assertNotNull(vos);
+
     }
 
     public PriCourseDetail genPriCourseDetailObject(){

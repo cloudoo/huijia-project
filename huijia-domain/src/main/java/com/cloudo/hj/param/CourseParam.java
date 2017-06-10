@@ -21,6 +21,7 @@ public class CourseParam {
 
     private int size;//可预约的人数
     private Date courseDate;//课程时间
+    private String time;//时刻
     private Date schFrom;
     private Date schTo;
 
@@ -87,6 +88,14 @@ public class CourseParam {
 
     public void setCourseDate(Date courseDate) {
         this.courseDate = courseDate;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public Date getSchFrom() {

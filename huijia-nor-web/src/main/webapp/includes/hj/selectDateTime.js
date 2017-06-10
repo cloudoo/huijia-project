@@ -8,9 +8,9 @@ $("#privatebook").on(
     }
 );
 
-$("#selectTime").on(
-    'click',function(){
-        var courseId = $(this).children("input").val();
-        $("#courseId").val(courseId);
-    }
-);
+// $("a").on(
+//     'click',function(){
+//         var time = $(this).children("span").text();
+//         $("#time").val(time);
+//     }
+// );

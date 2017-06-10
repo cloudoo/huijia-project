@@ -25,7 +25,7 @@
         </div>
         <div class="student-info">
             <div class="avatar" style="background-image: url('http://wx.qlogo.cn/mmopen/Kicac9LZzJtK1O1ycoG1uo3XJUsJzkAG2rnGialeYLbZaRZQ83Oia9XuOEqHLhBDP7SxxbfhLwSQZxa2pOiaoicSzlCeEfJaew4QO/0')"></div>
-            <span>zjy&emsp;</span>
+            <span>荟佳&emsp;</span>
         </div>
         <div class="flex">
             <a href="" class="col act">基本信息</a>
@@ -274,8 +274,8 @@
             </div>
         </div>
     </div>
- <script src="<c:url value='includes/jquery-1.10.2.min.js' /> "></script>
-<script src="<c:url value='includes/lib.min.js'/> " type="text/javascript"></script>
+ <script src="<c:url value='/includes/jquery-1.10.2.min.js' /> "></script>
+<script src="<c:url value='/includes/lib.min.js'/> " type="text/javascript"></script>
 <script type="text/javascript">
 function selectItem(modalId, obj, objVal, ojb2, objVal2)
 {

@@ -44,7 +44,7 @@
                 </p> 
             </div>
             <span class="book">
-                <a href="<c:url value='/course/booklist.hj?coachId=${coacher.id}'/>">&nbsp;&nbsp;&nbsp;&nbsp;预约&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <a href="<c:url value='/course/selectbooktime.hj?coacherId=${coacher.id}'/>">&nbsp;&nbsp;&nbsp;&nbsp;预约&nbsp;&nbsp;&nbsp;&nbsp;</a>
             </span>
         </div>
         </c:forEach>

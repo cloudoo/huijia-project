@@ -48,14 +48,14 @@ public class CourseManagerServiceTest {
 
         PriCourseSchInfo priCourseSchInfo = new PriCourseSchInfo();
         priCourseSchInfo.setShopName("海珠区荟佳店");
-        priCourseSchInfo.setCoacherId(2l);
+        priCourseSchInfo.setCoacherId(5l);
         priCourseSchInfo.setCourseId(3l);
 
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR,2017);
         calendar.set(Calendar.MONTH,5);
-        calendar.set(Calendar.DAY_OF_MONTH,6);
+        calendar.set(Calendar.DAY_OF_MONTH,10);
         Date strdate = new Date(calendar.getTimeInMillis());
 
         priCourseSchInfo.setSchStartDt(strdate);
@@ -67,7 +67,7 @@ public class CourseManagerServiceTest {
 
         priCourseSchInfo.setSchEndDt(endDate);
 
-        priCourseSchInfo.setStartTm("15:00");
+        priCourseSchInfo.setStartTm("9:00");
         priCourseSchInfo.setEndTm("23:00");
         priCourseSchInfo.setWeeks("1,2,3,4,5,6");
 

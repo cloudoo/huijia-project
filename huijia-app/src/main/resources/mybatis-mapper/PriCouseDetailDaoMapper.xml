@@ -155,7 +155,7 @@
             #{course.coacherId},
             #{course.courseId},
             #{course.size},
-            #{course.cu_size},
+            #{course.cuSize},
             #{course.courseDate},
             #{course.startTm},
             #{course.endTm},

@@ -12,6 +12,10 @@ var labelSelect = $('label.book-select').on('change', 'input', function(e) {
 
 $('#checkBook').on('click',function () {
 
+    if(ajaxCourseId=="3ce07b33f20942b2a11c71005ea582e9"){
+        alert("请选择课程......");
+        return ;
+    }
     var selectdate = $('#selectdate').val();
     var time = $('#time').val();
 
@@ -20,7 +24,7 @@ $('#checkBook').on('click',function () {
         {
 
             type : "POST",
-            url : "/course/checkBook.aj",
+            url : "../course/checkBook.aj",
             data:{
                 selectdate:selectdate,
                 time:time,

@@ -1,15 +1,9 @@
 package com.cloudo.hj.controller;
 
-import com.cloudo.hj.domain.CoacherInfo;
-import com.cloudo.hj.domain.PriCourseDetail;
-import com.cloudo.hj.domain.PriCourseSchInfo;
-import com.cloudo.hj.domain.ReservationInfo;
+import com.cloudo.hj.domain.*;
 import com.cloudo.hj.param.CourseParam;
 import com.cloudo.hj.param.ReservationParam;
-import com.cloudo.hj.service.ICoacherInfoService;
-import com.cloudo.hj.service.IPriCourseDetailService;
-import com.cloudo.hj.service.IPriCourseSchInfoService;
-import com.cloudo.hj.service.IReservationInfoService;
+import com.cloudo.hj.service.*;
 import com.cloudo.hj.util.HuiJiaUtils;
 import com.cloudo.hj.vo.PriCourseVo;
 import com.cloudo.hj.vo.ReservationVo;
@@ -45,6 +39,9 @@ public class CourseController {
 
 	@Resource(name="coacherInfoService")
 	private ICoacherInfoService coacherInfoService;
+
+	@Resource(name="courseInfoService")
+	private ICourseInfoService courseInfoService;
 
 	@Resource(name="reservationInfoService")
 	private IReservationInfoService reservationInfoService;
@@ -130,9 +127,10 @@ public class CourseController {
 
 	    //检查是否有卡包信息
 
-        //检查是否冲突
+
 
         PriCourseDetail priCourseDetail = priCourseDetailService.find(courDetailId);
+        CourseInfo courseInfo = courseInfoService.find(priCourseDetail.getCourseId());
 
         CourseParam param = new CourseParam();
         param.setId(courDetailId);
@@ -145,9 +143,9 @@ public class CourseController {
         try {
 
 
-            Date strTm = DateUtils.parseDate(selectdate+priCourseDetail.getStartTm(),format);
+            Date strTm = DateUtils.parseDate(selectdate+time,format);
 
-            Date endTm = DateUtils.parseDate(selectdate+priCourseDetail.getEndTm(),format);
+            Date endTm = DateUtils.addMinutes(strTm,courseInfo.getDuration());
 
             ReservationInfo reservationInfo = new ReservationInfo();
 
@@ -200,7 +198,7 @@ public class CourseController {
 
         return "bookStatus";
     }
-
+    //检查是否冲突
     @ResponseBody
     @RequestMapping(value = "/checkBook.aj",method = RequestMethod.POST)
     public ResultMessage<String> checkBookStatus(String selectdate,String time,String courseId){
@@ -237,7 +235,7 @@ public class CourseController {
         String userId = (String) request.getSession().getAttribute("user_id");
         if(StringUtils.isBlank(userId)){
             userId = "2";
-            request.getSession().setAttribute("user_id",2);
+            request.getSession().setAttribute("user_id","2");
 
         }
 

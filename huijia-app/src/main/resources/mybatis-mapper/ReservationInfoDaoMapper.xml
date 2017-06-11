@@ -87,7 +87,7 @@
             and t.reserva_tm &lt;= #{bookTo}
         </if>
         <if test="courseDate!=null">
-            and t.start_tm &lt; #{courseDate}
+            and t.start_tm &lt;= #{courseDate}
             and t.end_tm &gt; #{courseDate}
         </if>
     </select>

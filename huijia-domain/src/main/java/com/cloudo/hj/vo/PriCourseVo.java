@@ -1,11 +1,12 @@
 package com.cloudo.hj.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by cloudpj on 17/6/9.
  */
-public class PriCourseVo {
+public class PriCourseVo implements Serializable {
 
     private Long id;
     private String imgSrc;

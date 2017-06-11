@@ -8,4 +8,6 @@ import com.cloudo.hj.param.CourseParam;
  * Created by cloudoo on 2017/6/9.
  */
 public interface IReservationInfoService extends CrudService<ReservationInfo,ReservationInfo>{
+
+
 }

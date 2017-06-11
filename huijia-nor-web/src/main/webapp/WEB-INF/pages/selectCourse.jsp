@@ -19,16 +19,17 @@
 <body>
     <div id="appendParent"></div>
     <div id="ajaxWaiting"></div>
-    <form method="post" action="" >
+    <form method="post" action="<<c:url value='/course/bookCourse.hj' />" >
         <input type="hidden" name='day' id="today"  value="2017-05-08" />
         <input type="hidden" name='selectdate' id="selectdate" value="${selectdate}" />
+        <input type="hidden" name="time" id="time" value="${time}" />
         <div class="book-coach clearfix">
-            <div class="pull-left book-coach-name">教练：Loly</div>
+            <div class="pull-left book-coach-name">教练：${coacher.name}</div>
             <div class="pull-right book-date">预约时间：${selectdate}&nbsp;&nbsp;${time}</div>
         </div>
         <dl class="book-cases">
             <div>请选择课程：</div>
-            <c:forEach items="details" var="course" >
+            <c:forEach items="${details}" var="course" >
             <dd class="clearfix book-case case-selected">
                 <img class="pull-left" src="<c:url value='/includes/images/img01.png'/>" />
                 <p class="case-info">

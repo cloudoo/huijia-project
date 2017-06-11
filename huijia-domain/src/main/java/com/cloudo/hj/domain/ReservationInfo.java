@@ -14,6 +14,7 @@ public class ReservationInfo implements Serializable {
     private Long id;
 
     private Timestamp startTm;
+    private Timestamp endTm;
     private String shopName;
     private Long traineeId;
     private Long coacherId;
@@ -39,6 +40,14 @@ public class ReservationInfo implements Serializable {
 
     public void setStartTm(Timestamp startTm) {
         this.startTm = startTm;
+    }
+
+    public Timestamp getEndTm() {
+        return endTm;
+    }
+
+    public void setEndTm(Timestamp endTm) {
+        this.endTm = endTm;
     }
 
     public String getShopName() {

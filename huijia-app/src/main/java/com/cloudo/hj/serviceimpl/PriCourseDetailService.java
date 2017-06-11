@@ -59,6 +59,7 @@ public class PriCourseDetailService extends AbstractBaseService<PriCourseDetail,
         //TODO:做一些逻辑判断
         List<PriCourseVo> list = baseDao.findSimple(param);
         List<PriCourseVo> re = new ArrayList<PriCourseVo>();
+        if(list!=null&&list.size()>0)
         for(PriCourseVo priCourseVo:list){
              if(HuiJiaUtils.compareTime(priCourseVo.getStartTm(),param.getTime())<=0 &&
                      HuiJiaUtils.compareTime(priCourseVo.getEndTm(),param.getTime())>=0){

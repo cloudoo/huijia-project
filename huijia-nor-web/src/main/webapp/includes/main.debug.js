@@ -51,13 +51,26 @@ function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
             minutes  =  myDate.getMinutes(),
             $curminutes = parseInt(hours*60)+parseInt(minutes),
             $li = $("#calendar").find("li").not(".fix");
-        $li.each(function(){
-            var $times = $(this).find("span").text().split(":"),
-                $minutes = parseInt($times[0])*60+parseInt($times[1]);
-            if($minutes < $curminutes){
-                $(this).find("a").addClass("past");
-            }
-        });
+        var selectDate = $("#selectdate").val();
+        var  d   =   new   Date(selectDate.replace(/-/g,   "/"));
+        if(d==null||d<=myDate){
+            $li.each(function(){
+                var $times = $(this).find("span").text().split(":"),
+                    $minutes = parseInt($times[0])*60+parseInt($times[1]);
+                if($minutes < $curminutes){
+                    $(this).find("a").addClass("past");
+                }
+            });
+        }else{
+            $li.each(function(){
+                var $times = $(this).find("span").text().split(":"),
+                    $minutes = parseInt($times[0])*60+parseInt($times[1]);
+                if($minutes < $curminutes){
+                    $(this).find("a").removeClass("past");
+                }
+            });
+        }
+
     };
     initTimes();
     setInterval(initTimes,1800000);
@@ -102,6 +115,7 @@ function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式
 
  
     $(".calendar-title").on("click",".col",function(){
+        $('#calendar .plan a').removeClass('active');
         $(this).addClass("on").siblings(".col").removeClass("on");
         $("#selectdate").val($(this).attr("data-datetime"));
         initTimes();

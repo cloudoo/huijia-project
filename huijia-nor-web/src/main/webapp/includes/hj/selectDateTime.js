@@ -8,6 +8,8 @@ $("#privatebook").on(
     }
 );
 
+var today = $('#today').val();
+$("#selectdate").val(today);
 // $("a").on(
 //     'click',function(){
 //         var time = $(this).children("span").text();

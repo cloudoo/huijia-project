@@ -61,7 +61,7 @@
         </div>
     </form>
 
-    <script src="<c:url value='/includes/jquery-1.10.2.min.js'/>"></script>
+    <%--<script src="<c:url value='/includes/jquery-1.10.2.min.js'/>"></script>--%>
     <script src="<c:url value='/includes/lib.min.js'/>" type="text/javascript"></script>
     <script src="<c:url value='/includes/main.debug.js?v=4241650'/>"></script>
     <script src="<c:url value='/includes/hj/selectDateTime.js' />"></script>

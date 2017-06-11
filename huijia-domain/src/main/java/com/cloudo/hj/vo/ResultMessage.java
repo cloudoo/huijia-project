@@ -18,6 +18,11 @@ public class ResultMessage<T> implements Serializable{
 
     private T result;
 
+    public ResultMessage(){
+        this.success = true;
+        this.status = "200";
+    }
+
     public boolean isSuccess() {
         return success;
     }

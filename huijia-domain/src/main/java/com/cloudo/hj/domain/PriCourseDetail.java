@@ -16,6 +16,7 @@ public class PriCourseDetail implements Serializable {
     private Long courseId;
 
     private int size;//可预约的人数
+    private int cuSize = 0;//当前人数
     private Date courseDate;//
     private String startTm; //开始时刻 9：00
     private String endTm; //结束时刻 00：00
@@ -69,6 +70,14 @@ public class PriCourseDetail implements Serializable {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public int getCuSize() {
+        return cuSize;
+    }
+
+    public void setCuSize(int cuSize) {
+        this.cuSize = cuSize;
     }
 
     public Date getCourseDate() {

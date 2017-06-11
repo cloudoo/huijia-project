@@ -100,6 +100,9 @@ public class PriCourseDetailDaoTest {
 
         Assert.assertNotNull(vos);
 
+
+
+
     }
 
     public PriCourseDetail genPriCourseDetailObject(){

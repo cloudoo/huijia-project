@@ -19,7 +19,7 @@
 <body>
     <div id="appendParent"></div>
     <div id="ajaxWaiting"></div>
-    <form method="post" action="<c:url value='/course/bookCourse.hj' />" >
+    <form method="post" action="<c:url value='/index.hj' />" >
         <input type="hidden" name='day' id="today"  value="2017-05-08" />
         <input type="hidden" name='selectdate' id="selectdate" value="${selectdate}" />
         <input type="hidden" name="time" id="time" value="${time}" />
@@ -28,19 +28,19 @@
             <div class="pull-right book-date">预约时间：${selectdate}&nbsp;&nbsp;${time}</div>
         </div>
         <dl class="book-cases">
-            <div>请选择课程：</div>
-            <c:forEach items="${details}" var="course" >
+            <div>预定课程：</div>
+
             <dd class="clearfix book-case case-selected">
                 <img class="pull-left" src="<c:url value='/includes/images/img01.png'/>" />
                 <p class="case-info">
                     <span class="case-name">${course.name}</span> <br>
                     <span class="case-time">时长：${course.dura}分钟</span>
                 </p>
-                <label class="book-select" >
-                    <input type="radio" name="courseId" value="${course.id}" />
-                </label>
+                <p class="case-name">
+                    ${status}
+                </p>
             </dd>
-            </c:forEach>
+
 
         </dl>
 
@@ -53,13 +53,13 @@
         <div class="operate">
             <input type="submit" value="提交" id="submit_btn" class="hidden"/>
             <div id="ajax_loading" class="ajax_loading"></div>
-            <a id="checkBook" href="javascript:;" class="btn btn-primary">确认预约</a>
+            <a id="goHome" href="javascript:;" class="btn btn-primary">返回</a>
         </div>
     </form>
 
     <%--<script src="<c:url value='/includes/jquery-1.10.2.min.js'/>"></script>--%>
 <script src="<c:url value='/includes/lib.min.js'/> " type="text/javascript"></script>
-<script src="<c:url value='/includes/hj/selectCourse.js' />"  type="text/javascript">
+<script src="<c:url value='/includes/hj/bookStatus.js' />"  type="text/javascript">
 
 </script>
 </body>

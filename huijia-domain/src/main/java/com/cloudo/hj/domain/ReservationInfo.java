@@ -11,7 +11,11 @@ public class ReservationInfo implements Serializable {
     public static String PRIVATE_COURSE = "PC";
     public static String COMMON_COURSE = "CC";
     public static String FREE_STYLE = "FS";
-    private Long id;
+
+    public static int BOOK = 1; //预定
+    public static int COMP = 2; //完成
+    public static int EXPI = 3; //过期
+     private Long id;
 
     private Timestamp startTm;
     private Timestamp endTm;

@@ -9,6 +9,7 @@ import com.cloudo.hj.service.IPriCourseDetailService;
 import com.cloudo.hj.util.HuiJiaUtils;
 import com.cloudo.hj.util.WeiXinUtil;
 import com.cloudo.hj.vo.PriCourseVo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,13 +60,24 @@ public class PriCourseDetailService extends AbstractBaseService<PriCourseDetail,
         //TODO:做一些逻辑判断
         List<PriCourseVo> list = baseDao.findSimple(param);
         List<PriCourseVo> re = new ArrayList<PriCourseVo>();
-        if(list!=null&&list.size()>0)
-        for(PriCourseVo priCourseVo:list){
-             if(HuiJiaUtils.compareTime(priCourseVo.getStartTm(),param.getTime())<=0 &&
-                     HuiJiaUtils.compareTime(priCourseVo.getEndTm(),param.getTime())>=0){
-                 re.add(priCourseVo);
-             }
+        if(list!=null&&list.size()>0){
+
+            if(StringUtils.isNotBlank(param.getTime())){
+
+                for(PriCourseVo priCourseVo:list){
+
+                    if(HuiJiaUtils.compareTime(priCourseVo.getStartTm(),param.getTime())<=0 &&
+                            HuiJiaUtils.compareTime(priCourseVo.getEndTm(),param.getTime())>=0){
+                        re.add(priCourseVo);
+                    }
+
+
+                }
+            }else{
+                re.addAll(list);
+            }
         }
+
         return  re;
     }
 }

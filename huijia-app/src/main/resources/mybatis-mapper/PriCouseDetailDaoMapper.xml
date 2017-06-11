@@ -10,6 +10,7 @@
         <result column="coacher_id" property="coacherId" jdbcType="BIGINT"/>
         <result column="course_id" property="courseId" jdbcType="BIGINT"/>
         <result column="size" property="size" jdbcType="TINYINT"/>
+        <result column="cu_size" property="cuSize" jdbcType="TINYINT"/>
         <result column="course_date" property="courseDate" jdbcType="DATE"/>
         <result column="start_tm" property="startTm" jdbcType="VARCHAR"/>
         <result column="end_tm" property="endTm" jdbcType="VARCHAR"/>
@@ -26,6 +27,7 @@
         <result column="start_tm" property="startTm" jdbcType="VARCHAR"/>
         <result column="end_tm" property="endTm" jdbcType="VARCHAR" />
         <result column="size" property="size" jdbcType="TINYINT"/>
+        <result column="cu_size" property="cuSize" jdbcType="TINYINT" />
         <result column="course_date" property="courseDate" jdbcType="DATE"/>
         <result column="duration" property="dura" jdbcType="VARCHAR"/>
 
@@ -38,6 +40,7 @@
         , t.coacher_id
         , t.course_id
         , t.size
+        , t.cu_size
         , t.course_date
         , t.start_tm
         , t.end_tm
@@ -78,7 +81,7 @@
     </select>
 
     <select id="findSimple" resultMap="priCourseVo" parameterType="com.cloudo.hj.param.CourseParam">
-         select t.id,t.course_date,t.size,t.start_tm,t.end_tm, s.name,s.cover_dir,s.duration from hj_pri_cour_detail_info as t ,hj_course_info as s where t.course_id = s.id
+         select t.id,t.course_date,t.size,t.cu_size,t.start_tm,t.end_tm, s.name,s.cover_dir,s.duration from hj_pri_cour_detail_info as t ,hj_course_info as s where t.course_id = s.id
 
         <if test="id!=null">
             and t.id = ${id}
@@ -103,6 +106,7 @@
         , coacher_id
         , course_id
         , size
+        ,cu_size
         , course_date
         , start_tm
         , end_tm
@@ -115,6 +119,7 @@
         #{coacherId},
         #{courseId},
         #{size},
+        #{cuSize},
         #{courseDate},
         #{startTm},
         #{endTm},
@@ -135,6 +140,7 @@
         , coacher_id
         , course_id
         , size
+        , cu_size
         , course_date
         , start_tm
         , end_tm
@@ -149,6 +155,7 @@
             #{course.coacherId},
             #{course.courseId},
             #{course.size},
+            #{course.cu_size},
             #{course.courseDate},
             #{course.startTm},
             #{course.endTm},
@@ -175,6 +182,9 @@
             </if>
             <if test="size>0">
                 `size` = #{size},
+            </if>
+            <if test="cuSize>0" >
+                `cu_size` = #{cuSize},
             </if>
             <if test="courseDate!=null">
                 `course_date` = #{courseDate},

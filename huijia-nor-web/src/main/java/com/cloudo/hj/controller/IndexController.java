@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,5 +40,13 @@ public class IndexController {
 
 	    return "";
     }
+
+	@RequestMapping("MP_verify_8EMKJBZ8nZaiCLG3.txt")
+	@ResponseBody
+	public String mainIndex(HttpServletRequest request){
+
+		return "8EMKJBZ8nZaiCLG3";
+
+	}
 
 }

@@ -33,13 +33,14 @@
 
     <div class="myCourse-record-list">
         <ul>
+            <c:forEach var="reservationVo" items="${reservations}">
             <li>
-                <span class="day">今日</span>
+                <span class="day">${reservationVo.reservaTm}</span>
                 <div class="pic"><img src="<c:url value='/includes/images/img01.png' /> " ></div>
                 <div class="desc">
-                    <h3>普拉提私教课程</h3>
-                    <p class="p1"><span class="lecturer">Owen</span><span class="date">04月22日</span><span class="time">19:00 — 20:00</span></p>
-                    <p class="p2">瑜伽 普拉提 体态调整</p>
+                    <h3>${reservationVo.courseName}</h3>
+                    <p class="p1"><span class="lecturer">${reservationVo.coacherName}</span><span class="date"></span><span class="time">${reservationVo.startTm} — ${reservationVo.endTm}</span></p>
+                    <p class="p2">${reservationVo.courseDesc}</p>
                 </div>
                 <div class="control">
                     <p class="p1">
@@ -47,12 +48,13 @@
                         <span class="cancel"><em>取消</em></span>
                     </p>
                     <p class="p2">
-                        报名人数：1
+                        报名人数：${reservationVo.cuSize}
                     </p>
                 </div>
             </li>
+            </c:forEach>
         </ul>
-        <div class="more-record">更多记录</div>
+        <%--<div class="more-record">更多记录</div>--%>
     </div>
 
     <!--  以下注释为无数据时显示内容  勿删  

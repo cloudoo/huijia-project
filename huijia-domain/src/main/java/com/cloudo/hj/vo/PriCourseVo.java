@@ -14,6 +14,7 @@ public class PriCourseVo implements Serializable {
     private String startTm;
     private String endTm;
     private int size;
+    private int cuSize;
     private Date courseDate;
     private int dura;
 
@@ -63,6 +64,14 @@ public class PriCourseVo implements Serializable {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public int getCuSize() {
+        return cuSize;
+    }
+
+    public void setCuSize(int cuSize) {
+        this.cuSize = cuSize;
     }
 
     public Date getCourseDate() {

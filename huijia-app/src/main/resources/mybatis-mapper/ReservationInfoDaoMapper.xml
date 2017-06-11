@@ -6,6 +6,7 @@
     <resultMap id="reservationInfo" type="com.cloudo.hj.domain.ReservationInfo">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="start_tm" property="startTm" jdbcType="TIMESTAMP"/>
+        <result column="end_tm" property="endTm" jdbcType="TIMESTAMP"/>
         <result column="shop_name" property="shopName" jdbcType="VARCHAR"/>
         <result column="trainee_id" property="traineeId" jdbcType="BIGINT"/>
         <result column="coacher_id" property="coacherId" jdbcType="BIGINT"/>
@@ -19,9 +20,28 @@
         <result column="op_tm" property="opTm" />
     </resultMap>
 
+    <resultMap id="reservationVo" type="com.cloudo.hj.vo.ReservationVo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="start_tm" property="startTm" jdbcType="TIMESTAMP"/>
+        <result column="end_tm" property="endTm" jdbcType="TIMESTAMP"/>
+        <result column="shop_name" property="shopName" jdbcType="VARCHAR"/>
+        <result column="coacher_name" property="coacherName" jdbcType="BIGINT"/>
+        <result column="course_name" property="courseName" jdbcType="BIGINT"/>
+        <result column="course_desc" property="courseDesc" jdbcType="BIGINT"/>
+        <result column="cover_dir" property="coverDir" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="reserva_tm" property="reservaTm" jdbcType="TIMESTAMP"/>
+        <result column="cancel_tm" property="cancelTm" jdbcType="TIMESTAMP"/>
+        <result column="cancel_reason" property="cancelReason" jdbcType="VARCHAR" />
+        <result column="cards" property="cards" jdbcType="VARCHAR" />
+        <result column="op_tm" property="opTm" />
+    </resultMap>
+
     <sql id="Base_Column_List">
         t.id
         , t.start_tm
+        , t.end_tm
         , t.shop_name
         , t.trainee_id
         , t.coacher_id
@@ -46,13 +66,16 @@
     </select>
 
     <select id="findByParam" resultMap="reservationInfo"
-            parameterType="com.cloudo.hj.domain.ReservationInfo">
+            parameterType="com.cloudo.hj.param.ReservationParam">
         select
         <include refid="Base_Column_List"/>
         from <include refid="table_name"/> AS t
         WHERE 1=1
         <if test="id>0">
             and t.id = #{id}
+        </if>
+        <if test="traineeId!=null" >
+            and t.trainee_id = #{traineeId}
         </if>
         <if test="shopName!=null">
             and t.shop_name like "%"#{shopName}"%"
@@ -63,6 +86,10 @@
         <if test="bookTo!=null">
             and t.reserva_tm &lt;= #{bookTo}
         </if>
+        <if test="courseDate!=null">
+            and t.start_tm &lt; #{courseDate}
+            and t.end_tm &gt; #{courseDate}
+        </if>
     </select>
 
 
@@ -70,6 +97,7 @@
             keyProperty="id">
         INSERT INTO <include refid="table_name"/> (
         start_tm
+        ,end_tm
         , shop_name
         , trainee_id
         , coacher_id
@@ -83,6 +111,7 @@
         )
         values (
         #{startTm},
+        #{endTm},
         #{shopName},
         #{traineeId},
         #{coacherId},
@@ -101,6 +130,9 @@
         <set>
             <if test="startTm!=null">
                 `start_tm` = #{startTm},
+            </if>
+            <if test="endTm!=null">
+                `end_tm` = #{endTm},
             </if>
             <if test="shopName!=null">
                 `shop_name` = #{shopName},
@@ -149,12 +181,43 @@
         WHERE id =
         #{id}
     </delete>
-    <!-- FIXME: 下面没有改完-->
-    <select id="find" parameterType="java.lang.Long" resultMap="reservationInfo">
+
+    <select id="findSimple" parameterType="com.cloudo.hj.param.ReservationParam" resultMap="reservationVo">
         SELECT
-        <include refid="Base_Column_List"/>
-        FROM  <include refid="table_name"/>  AS t
-        WHERE t.id = #{id}
+        t.id as id,
+        r.name as course_name,
+        r.cover_dir,
+        r.course_desc,
+        t.start_tm,
+        t.end_tm,
+        s.cu_size,
+        j.name as coacher_name,
+        t.type,
+        t.status,
+        t.reserva_tm
+        from hj_reservation_info t,hj_pri_cour_detail_info s,hj_course_info r,hj_coacher_info j
+        where t.course_id = s.id and s.coacher_id = j.id
+        and s.course_id = r.id
+
+        <if test="id!=null">
+            and t.id = #{id}
+        </if>
+        <if test="traineeId!=null" >
+            and t.trainee_id = #{traineeId}
+        </if>
+        <if test="shopName!=null">
+            and t.shop_name like "%"#{shopName}"%"
+        </if>
+        <if test="bookFrom!=null">
+            and t.reserva_tm &gt;= #{bookFrom}
+        </if>
+        <if test="bookTo!=null">
+            and t.reserva_tm &lt;= #{bookTo}
+        </if>
+        <if test="courseDate!=null">
+            and t.start_tm &lt; #{courseDate}
+            and t.end_tm &gt; #{courseDate}
+        </if>
     </select>
 
 

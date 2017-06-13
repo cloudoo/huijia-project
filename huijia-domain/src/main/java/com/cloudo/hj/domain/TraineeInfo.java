@@ -45,6 +45,14 @@ public class TraineeInfo implements Serializable {
         this.id = id;
     }
 
+    public String getWxOpenId() {
+        return wxOpenId;
+    }
+
+    public void setWxOpenId(String wxOpenId) {
+        this.wxOpenId = wxOpenId;
+    }
+
     public String getName() {
         return name;
     }

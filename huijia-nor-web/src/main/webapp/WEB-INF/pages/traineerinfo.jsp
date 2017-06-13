@@ -36,16 +36,17 @@
 
     <div class="student-base">
         <form method="post" action="" id="ajax_form" onsubmit="">
-            
+
             <div class="base-info">
                 <div class="info control clearfix">
                     <span class="pull-left">姓名：</span>
-                    <input type="text" class="pull-right text-right" name='profile[userName]' id="userName" value="zjy" placeholder="请输入姓名">
+                    <input type="text" name="wxOpenId" value="${wxOpenId}"/>
+                    <input type="text" class="pull-right text-right" name='name' id="name" value="${name}" placeholder="请输入姓名">
                 </div>
                 <div class="info control clearfix">
                 <span class="pull-left">性别：</span>
                 <div class="pull-right">
-                                    <input type="hidden" name="profile[gender]" id="sexValue" value="0"/>
+                                    <input type="hidden" name="gender" id="sexValue" value="0"/>
                     <a href="javascript:;" data-toggle="modal" data-target="#sexModal" class="arrow">
                         <span id="sexText">女</span>
                     </a>
@@ -274,88 +275,11 @@
             </div>
         </div>
     </div>
- <script src="<c:url value='/includes/jquery-1.10.2.min.js' /> "></script>
-<script src="<c:url value='/includes/lib.min.js'/> " type="text/javascript"></script>
-<script type="text/javascript">
-function selectItem(modalId, obj, objVal, ojb2, objVal2)
-{
-    $('#' + obj).val(objVal);
-    $('#' + ojb2).html(objVal2);
-    $('#' + modalId).modal('hide');
-}
 
-function selectShopItem(modalId, obj, objVal, ojb2, objVal2)
-{
-    $('#' + obj).val(objVal);
-    $('#' + ojb2).html(objVal2);
-    $('#' + modalId).modal('hide');
-    $.ajax({
-         type: "POST",
-         url: "",
-         data: {shopId:objVal},
-         dataType: "html",
-         success: function(data){
-             $('#ajaxCoachList').html(data);
-          }
-     });
-}
-</script>
+    <script src="<c:url value='/includes/jquery-1.10.2.min.js' /> "></script>
+    <script src="<c:url value='/includes/lib.min.js'/> " type="text/javascript"></script>
+    <script src="<c:url value='/includes/mobiscroll.js?ver=1'/> " type="text/javascript"></script>
+    <script src="<c:url value='/includes/mobiscroll.config.js?ver=1'/> " type="text/javascript"></script>
 
 </body>
 </html>
-<script src="<c:url value='/includes/mobiscroll.js?ver=1'/> " type="text/javascript"></script>
-<script src="<c:url value='/includes/mobiscroll.config.js?ver=1'/> " type="text/javascript"></script>
-<script type="text/javascript">
-    $(function (){
-        // 出生日期
-        var currYear = (new Date()).getFullYear();
-        var opt = {
-            preset : 'date',
-            theme: 'mobiscroll',    // 皮肤样式
-            display: 'bottom',      // 显示方式
-            mode: 'scroller',       // 日期选择模式
-            dateFormat: 'yyyy-mm-dd',
-            defValue:'1985-01-01',
-            showNow: false,
-            startYear: currYear - 80,   // 开始年份
-            endYear: currYear,          // 结束年份
-            setText: '确定',
-            cancelText: '取消'
-        };
-        $("#birthday").mobiscroll(opt);
-
-        // 健身需求
-        $("#fitGoalButton").on("click", function()
-        {
-            var fitGoalHtml = '', fitGoalVal = '', fitGoalText = '', count = 0;
-            var checks = $(":input[name=fitGoal]");
-            for (var i = 0; i < checks.length; i++)
-            {
-                if (checks[i].checked == true)
-                {
-                    count += 1;
-                }
-            }
-
-            if (count == 0)
-            {
-                fitGoalHtml += '<input type="hidden" name="profile[fitGoal][]" value="'+ fitGoalVal +'" checked="checked">';
-            }
-            else
-            {
-                $(":input[name=fitGoal]:checked").each(function(i)
-                {
-                    fitGoalVal = $(this).val();
-                    fitGoalText = $(this).attr('data-value');
-                    fitGoalHtml += '<input type="hidden" name="profile[fitGoal][]" value="'+ fitGoalVal +'" checked="checked">';
-                    fitGoalHtml += '<div class="demand">'
-                            + fitGoalText
-                            +'</div> '
-                });
-            }
-
-            $('#fitGoalText').html(fitGoalHtml);
-            $("#fitGoalModal").modal('hide');
-        });
-    });
-</script>

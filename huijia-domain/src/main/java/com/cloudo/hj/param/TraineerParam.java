@@ -10,6 +10,7 @@ public class TraineerParam {
 
     private Long id;
     private String name;
+    private String wxOpenId;
     private String cellphone;
     private Timestamp registTmFrom;
     private Timestamp registTmTo;
@@ -20,6 +21,14 @@ public class TraineerParam {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getWxOpenId() {
+        return wxOpenId;
+    }
+
+    public void setWxOpenId(String wxOpenId) {
+        this.wxOpenId = wxOpenId;
     }
 
     public String getName() {

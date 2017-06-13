@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudo.hj.dao.TraineeInfoDao">
 
 
     <resultMap id="traineeInfo" type="com.cloudo.hj.domain.TraineeInfo">
         <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="wx_open_id" property="wxOpenId" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="gender" property="gender" jdbcType="TINYINT"/>
         <result column="cellphone" property="cellphone" jdbcType="VARCHAR"/>
@@ -28,6 +28,7 @@
 
     <sql id="Base_Column_List">
   t.id            ,
+  t.wx_open_id,
   t.name          ,
   t.gender        ,
   t.cellphone     ,
@@ -64,11 +65,14 @@
         <if test="id>0">
             and t.id = #{id}
         </if>
+        <if test="wxOpenId!=null">
+            and t.wx_open_id = #{wxOpenId}
+        </if>
         <if test="name!=null">
             and name like #{name}
         </if>
         <if test="cellphone!=null">
-            and name like #{cellphone}
+            and cellphone like #{cellphone}
         </if>
         <if test="registTmFrom!=null">
             <![CDATA[ AND regist_tm >= "${registTmFrom}" ]]>
@@ -83,7 +87,7 @@
     <insert id="save" parameterType="traineeInfo" useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO HJ_TRAINEE_INFO (
-
+  `wx_open_id`   ,
   `name`          ,
   `gender`           ,
   `cellphone`     ,
@@ -103,7 +107,7 @@
   `pic_dir`
         )
         values (
-
+  #{wxOpenId},
   #{name},
   #{gender},
   #{cellphone},
@@ -124,64 +128,71 @@
         )
     </insert>
 
-
-    <update id="update" parameterType="traineeInfo" >
-        UPDATE HJ_TRAINEE_INFO
+    <update id="update" parameterType="traineeInfo">
+        UPDATE hj_trainee_info
         <set>
-           <if test="name!=null">
-               name = #{name},
-           </if>
-            <if test="gender >= 0">         
-                gender = #{gender}, 
+            <if test="wxOpenId!=null">
+                `wx_open_id` = #{wxOpenId},
             </if>
-            <if test="cellphone!=null">   
-                cellphone = #{cellphone},
+            <if test="name!=null">
+                `name` = #{name},
             </if>
-            <if test="status >= 0">       
-                status = #{status}, 
+            <if test="gender> -1">
+                `gender` = #{gender},
             </if>
-            <if test="identit!=null">    
-                identit = #{identit},
+            <if test="cellphone!=null">
+                `cellphone` = #{cellphone},
             </if>
-            <if test="brithday!=null">       
-                brithday = #{brithday},
+            <if test="status> -1">
+                `status` = #{status},
             </if>
-            <if test="height>0">       
-                height = #{height} ,
+
+            <if test="shopInfo!=null">
+                `shopinfo` = #{shopInfo},
             </if>
-            <if test="weight>0">      
-                t.weight = #{weight}   ,
+            <if test="registerTm!=null">
+                `register_tm` = #{registerTm},
             </if>
-            <if test="disType>1">     
-                dis_type = #{disType} ,
+
+            <if test="identit!=null">
+                `identit` = #{identit},
             </if>
-            <if test="memo!=null">       
-                memo = #{memo} ,
+            <if test="brithday!=null">
+                `brithday` = #{brithday},
             </if>
-            <if test="fitNeeds!=null">       
-                fit_needs = #{fitNeeds},
+            <if test="height!=null">
+                `height` =#{height},
             </if>
-            <if test="coacherId!=null">       
-                coacher_id = #{coacherId} ,
+            <if test="weight!=null">
+                `weight` =#{weight},
             </if>
-            <if test="career!=null">       
-                career = #{career},
+            <if test="disType!=null">
+                `dis_type` =#{disType},
             </if>
-            <if test="post!=null">        
-                post = #{post} ,
+            <if test="memo!=null">
+                `memo` =#{memo},
             </if>
-            <if test="history!=null">       
-                history = #{history},
+            <if test="fitNeeds!=null">
+                `fit_needs` =#{fitNeeds},
             </if>
-            <if test="picDir!=null">        
-                pic_dir = #{picDir},
-            </if> 
+            <if test="coacherId!=null">
+                `coacher_id` =#{coacherId},
+            </if>
+            <if test="career!=null">
+                `career` =#{career},
+            </if>
+            <if test="post!=null">
+                `post` = #{post}
+            </if>
+            <if test="picDir!=null">
+                `picDir` = #{pic_dir}
+            </if>
+
         </set>
-
-        WHERE t.id = #{id}
-
+        WHERE id = #{id}
     </update>
 
+    <!-- -->
 
     <delete id="remove" parameterType="java.lang.Long">
         DELETE
@@ -209,7 +220,7 @@
             and name like #{name}
         </if>
         <if test="cellphone!=null">
-            and name like #{cellphone}
+            and cellphone like #{cellphone}
         </if>
     </select>
 

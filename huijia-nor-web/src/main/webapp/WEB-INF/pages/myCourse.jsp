@@ -22,10 +22,10 @@
         <div class="head">
             <ul class="nav nav-tabs nav-booking">
                 <li class="active">
-                    <a href=""><em>私教课</em></a>
+                    <a href="<c:url value='/traineer/privatebooks.hj'/>"><em>私教课</em></a>
                 </li>
                 <li >
-                    <a href=""><em>团课</em></a>
+                    <a href=""<c:url value='/traineer/commonsbooks.hj'/>""><em>团课</em></a>
                 </li>
             </ul>
         </div>
@@ -44,8 +44,8 @@
                 </div>
                 <div class="control">
                     <p class="p1">
-                        <span class="edit"><em>修改</em></span>
-                        <span class="cancel"><em>取消</em></span>
+                        <a href="<c:url value='/traineer/toChangePriCourse.hj?revId=${reservationVo.id}' /> "><span class="edit"><em>修改</em></span></a>
+                        <a href="<c:url value='/course/toCancelPage.hj?revId=${reservationVo.id}' />" ><span class="cancel"><em>取消</em></span></a>
                     </p>
                     <p class="p2">
                         报名人数：${reservationVo.cuSize}

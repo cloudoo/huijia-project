@@ -4,6 +4,7 @@ import com.cloudo.hj.domain.*;
 import com.cloudo.hj.param.CourseParam;
 import com.cloudo.hj.param.ReservationParam;
 import com.cloudo.hj.service.*;
+import com.cloudo.hj.util.HjWebUtils;
 import com.cloudo.hj.util.HuiJiaUtils;
 import com.cloudo.hj.vo.PriCourseVo;
 import com.cloudo.hj.vo.ReservationVo;
@@ -29,7 +30,7 @@ import java.util.List;
 @RequestMapping("/course")
 public class CourseController {
 
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private String[] format = new String[]{"yyyy-MM-ddHH:mm","yyyy-MM-dd HH:mm"};
 
     @Resource(name="priCourseSchInfoService")
@@ -45,7 +46,6 @@ public class CourseController {
 
 	@Resource(name="reservationInfoService")
 	private IReservationInfoService reservationInfoService;
-
 
 
 	@RequestMapping("/commonlist.hj")
@@ -68,8 +68,6 @@ public class CourseController {
 
         List<PriCourseSchInfo> list = priCourseSchInfoService.findByParam(param);
 
-
-
 		String[] minMaxTm = priCourseDetailService.findPriCourseTimeRange(param);
 
         if(minMaxTm!=null){
@@ -84,8 +82,6 @@ public class CourseController {
 
 	@RequestMapping(value = "/selectcourse.hj",method = RequestMethod.POST)
 	public String selectCourse(String coacherId,String selectdate,String time,Model model,HttpServletRequest request){
-
-
 
         CourseParam param = new CourseParam();
         param.setCoacherId(Long.parseLong(coacherId));
@@ -112,9 +108,6 @@ public class CourseController {
         }
 
 
-
-
-
 		return "selectCourse";
 	}
 
@@ -127,8 +120,6 @@ public class CourseController {
 
 	    //检查是否有卡包信息
 
-
-
         PriCourseDetail priCourseDetail = priCourseDetailService.find(courDetailId);
         CourseInfo courseInfo = courseInfoService.find(priCourseDetail.getCourseId());
 
@@ -136,18 +127,24 @@ public class CourseController {
         param.setId(courDetailId);
         List<PriCourseVo> courses = priCourseDetailService.findSimple(param);
 
+        //
         model.addAttribute("selectdate",selectdate);
         model.addAttribute("time",time);
         model.addAttribute("course",courses.get(0));
 
         try {
 
-
             Date strTm = DateUtils.parseDate(selectdate+time,format);
 
             Date endTm = DateUtils.addMinutes(strTm,courseInfo.getDuration());
-
-            ReservationInfo reservationInfo = new ReservationInfo();
+            ReservationInfo reservationInfo=null;
+            boolean isChangeRes = false;
+            if(request.getSession().getAttribute(HjWebUtils.CHANGE_REV)!=null){
+                isChangeRes = true;
+                reservationInfo = (ReservationInfo) request.getSession().getAttribute(HjWebUtils.CHANGE_REV);
+            }else{
+                reservationInfo = new ReservationInfo();
+            }
 
             reservationInfo.setCourseId(courDetailId);
             reservationInfo.setShopName("测试店");
@@ -165,12 +162,15 @@ public class CourseController {
             //FIXME:会员信息没有做
             reservationInfo.setTraineeId(2l);
 
-
-
-            reservationInfoService.save(reservationInfo);
+            //TODO:可以优化到service层
+            if(isChangeRes){
+                reservationInfoService.update(reservationInfo);
+                request.getSession().removeAttribute(HjWebUtils.CHANGE_REV);
+            }else{
+                reservationInfoService.save(reservationInfo);
+            }
 
             if(reservationInfo.getId()!=null&&reservationInfo.getId()>0){
-
 
                 PriCourseDetail newDetail = new PriCourseDetail();
                 newDetail.setId(priCourseDetail.getId());
@@ -179,75 +179,65 @@ public class CourseController {
                     if(!priCourseDetailService.update(newDetail)){
                         logger.error("更新pricourseDetail表失败 ［id="+priCourseDetail.getId()+"],cuSize=["+newDetail.getCuSize()+"],请后台更新");
                         model.addAttribute("status","预定失败！....");
-
                     }else{
-
                         model.addAttribute("status","预定成功！");
                     }
             }
 
-
-
         } catch (ParseException e) {
-
             logger.error("错误："+e.getLocalizedMessage());
-
-
         }
-
 
         return "bookStatus";
     }
     //检查是否冲突
     @ResponseBody
     @RequestMapping(value = "/checkBook.aj",method = RequestMethod.POST)
-    public ResultMessage<String> checkBookStatus(String selectdate,String time,String courseId){
+    public ResultMessage<String> checkBookStatus(String selectdate,String time,String courseId,HttpServletRequest request){
             ResultMessage<String> rs = new ResultMessage<String>();
-        ReservationParam param = new ReservationParam();
-        Date bookDate = null;
-        try {
-            bookDate = DateUtils.parseDate(selectdate+time,format);
-            param.setCourseDate(new Timestamp(bookDate.getTime()));
-            List<ReservationInfo> infos = reservationInfoService.findByParam(param);
-            if(infos!=null&&infos.size()!=0){
-                rs.setSuccess(false);
-                rs.setResult("预定时间已有课程，请重新选择");
+        ReservationInfo changeRevInfo = (ReservationInfo)request.getSession().getAttribute("toChangeRevInfo");
+         if(changeRevInfo!=null){
 
-            }else{
+             rs.setSuccess(true);
 
-                rs.setSuccess(true);
+             rs.setResult("预定中.....");
 
-                rs.setResult("预定中.....");
-            }
-        } catch (ParseException e) {
+         }else{
+             ReservationParam param = new ReservationParam();
+             Date bookDate = null;
+             try {
+                 bookDate = DateUtils.parseDate(selectdate+time,format);
+                 param.setCourseDate(new Timestamp(bookDate.getTime()));
+                 List<ReservationInfo> infos = reservationInfoService.findByParam(param);
+                 if(infos!=null&&infos.size()!=0){
+                     rs.setSuccess(false);
+                     rs.setResult("预定时间已有课程，请重新选择");
+                 }else{
 
-            rs.setSuccess(false);
-            rs.setResult("后台错误，请联系管理员");
-            e.printStackTrace();
-        }
+                     rs.setSuccess(true);
+
+                     rs.setResult("预定中.....");
+                 }
+             } catch (ParseException e) {
+
+                 rs.setSuccess(false);
+                 rs.setResult("后台错误，请联系管理员");
+                 e.printStackTrace();
+             }
+         }
+
 
         return  rs;
     }
 
-	@RequestMapping("/mybooks.hj")
-	public String mybooks(Model model,HttpServletRequest request){
+    @RequestMapping("/toCancelPage.hj")
+    public String toCancelPage(Model model,HttpServletRequest request){
+        String revId = request.getParameter("revId");
+        model.addAttribute("revId",revId);
 
-        String userId = (String) request.getSession().getAttribute("user_id");
-        if(StringUtils.isBlank(userId)){
-            userId = "2";
-            request.getSession().setAttribute("user_id","2");
+        return "cancelCourse";
+    }
 
-        }
-
-        ReservationParam param = new ReservationParam();
-        param.setTraineeId(Long.parseLong(userId));
-
-        List<ReservationVo> reservationInfos = reservationInfoService.findSimple(param);
-
-        model.addAttribute("reservations",reservationInfos);
-
-		return "myCourse";
-	}
 
 
 }

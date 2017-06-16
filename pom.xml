@@ -11,6 +11,7 @@
         <module>huijia-domain</module>
         <module>huijia-app</module>
         <module>huijia-nor-web</module>
+        <module>huijia-admin-web</module>
     </modules>
     <packaging>pom</packaging>
 

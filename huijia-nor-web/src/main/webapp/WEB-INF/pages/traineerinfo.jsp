@@ -35,13 +35,14 @@
     </div>
 
     <div class="student-base">
-        <form method="post" action="" id="ajax_form" onsubmit="">
+        <form method="post" action="/traineer/save.hj" id="ajax_form" onsubmit="">
 
             <div class="base-info">
                 <div class="info control clearfix">
                     <span class="pull-left">姓名：</span>
+                    <input type="text" name="id" value="${traineer.id}"/>
                     <input type="text" name="wxOpenId" value="${wxOpenId}"/>
-                    <input type="text" class="pull-right text-right" name='name' id="name" value="${name}" placeholder="请输入姓名">
+                    <input type="text" class="pull-right text-right" name='name' id="name" value="${traineer.name}" placeholder="请输入姓名">
                 </div>
                 <div class="info control clearfix">
                 <span class="pull-left">性别：</span>
@@ -54,17 +55,17 @@
             </div>
                 <div class="info control clearfix">
                 <span class="pull-left">生日：</span>
-                <input type="text" id="birthday" class="pull-right text-right" name="profile[birthday]" value="0" placeholder="请输入出生日期">
+                <input type="text" id="birthday" class="pull-right text-right" name="birthday" value="0" placeholder="请输入出生日期">
             </div>
                 <div class="info control clearfix">
                 <span class="pull-left">手机号码：</span>
-                <input type="text" readonly="readonly" class="pull-right text-right" name="profile[mobile]" value="15011771887">
+                <input type="text"   id= "cellphone" class="pull-right text-right" name="cellphone" value="${traineer.cellphone}">
 
             </div>
                 <div class="info clearfix">
                 <span class="pull-left">所属场馆：</span>
                 <div class="pull-right">
-                    <input type="hidden" name="profile[shopId]" id="shop" value=""/>
+                    <input type="hidden" name="shopname" id="shop" value="${traineer.shopInfo}"/>
                     <a href="javascript:;" data-toggle="modal" data-target="#shopModal" class="arrow">
                         <span id="shopText"></span>
                         <i class="icon icon-arrow"></i>
@@ -80,22 +81,22 @@
                     </a>
                 </div>
             </div>
-                <div class="info clearfix">
-                <span class="pull-left">健身需求：</span>
-                <div class="pull-right">
-                    <a href="javascript:;"  data-toggle="modal" data-target="#fitGoalModal" class="arrow flex">
-                        <div id="fitGoalText" class="col1">
-                                            </div>
-                        <i class="icon icon-arrow"></i>
-                    </a>
-                </div>
-            </div>
-            </div>
+                <%--<div class="info clearfix">--%>
+                <%--<span class="pull-left">健身需求：</span>--%>
+                <%--<div class="pull-right">--%>
+                    <%--<a href="javascript:;"  data-toggle="modal" data-target="#fitGoalModal" class="arrow flex">--%>
+                        <%--<div id="fitGoalText" class="col1">--%>
+                                            <%--</div>--%>
+                        <%--<i class="icon icon-arrow"></i>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--</div>--%>
 
-            <div class="text-center plan-student-info">
-                卡包信息
-            </div>
-            
+            <%--<div class="text-center plan-student-info">--%>
+                <%--卡包信息--%>
+            <%--</div>--%>
+            <%----%>
             <div>
                 <input type="submit" value="提交" id="submit_btn" class="hidden"/>
                 <div id="ajax_loading" class="ajax_loading"></div>
@@ -112,10 +113,10 @@
                     <div class="list-group">
                         <ul>
                             <li>
-                                <a href="javascript:;" onclick="selectItem('sexModal', 'sexValue', '1', 'sexText', '男')">男</a>
+                                <a href="javascript:;" onclick="selectItem('sexModal', 'sexValue', '1', 'sexText', '1')">男</a>
                             </li>
                             <li>
-                                <a href="javascript:;" onclick="selectItem('sexModal', 'sexValue', '2', 'sexText', '女')">女</a>
+                                <a href="javascript:;" onclick="selectItem('sexModal', 'sexValue', '2', 'sexText', '2')">女</a>
                             </li>
                         </ul>
                      </div>
@@ -132,7 +133,7 @@
                     <div class="list-group">
                         <ul>
                             <li>
-                                <a href="javascript:;" onclick="selectShopItem('shopModal', 'shop', '723710f4aa33438798ebab26db162001', 'shopText', '正位健【瑜伽•普拉提•体态调整】')">正位健【瑜伽•普拉提•体态调整】</a>
+                                <a href="javascript:;" onclick="selectShopItem('shopModal', 'shop', '723710f4aa33438798ebab26db162001', 'shopText', '【荟伽•普拉提•体态调整】')">荟伽。养生馆</a>
                             </li>
                         </ul>
                      </div>
@@ -148,37 +149,8 @@
                 <div class="modal-body">
                     <div class="list-group">
                         <ul id="ajaxCoachList">
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '644435f6a31742ba8329ec3deb7a3344', 'chiefCoachText', 'Owen')">Owen</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', 'bb9628f5d64d4e8e888ddcc83f70c19d', 'chiefCoachText', 'Johnnyॐ')">Johnnyॐ</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '12df903193ab4a1ba0fa0708c9336d0d', 'chiefCoachText', 'ॐTina')">ॐTina</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', 'a020e3adf2ba44f4a85d8cd2c0b17128', 'chiefCoachText', 'Jason')">Jason</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '377f0f8d6cfb40a2af4333943ad2849b', 'chiefCoachText', 'Loly')">Loly</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '6f1a2d10263e424089fe3c381c262023', 'chiefCoachText', 'Yuki')">Yuki</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '6c6e1b95cce84d2cbba66c7023fe6f3f', 'chiefCoachText', '郭婧')">郭婧</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '7f665665c63a43ae8c9b87cd53c164ea', 'chiefCoachText', '钟长俊')">钟长俊</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '3d2d882682d0439db8857a7058b3d5b7', 'chiefCoachText', '秦小秀')">秦小秀</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" onclick="selectItem('chiefCoachModal', 'chiefCoach', '7dd33bc860c94ce198a44a28b3367381', 'chiefCoachText', '正位健Yoga')">正位健Yoga</a>
-                            </li>
-                        </ul>
+
+                         </ul>
                      </div>
                 </div>
             </div>

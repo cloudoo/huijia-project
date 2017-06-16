@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>huijia-project</artifactId>
+        <groupId>com.cloudo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
+    <artifactId>huijia-admin-web</artifactId>
+    <properties>
+        <jetty.port>9092</jetty.port>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.cloudo</groupId>
+            <artifactId>huijia-app</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+    </dependencies>
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!-- 为了让WAR打包插件设定包名称不带版本号 -->
+
+                    <!--<warName>${project.artifactId}</warName>-->
+                    <archive>
+                        <!-- 为了在生成的MANIFEST.MF文件中添加Class-Path -->
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+
+                    <httpConnector>
+                        <port>${jetty.port}</port>
+                    </httpConnector>
+                    <!-- <connectors> <connector implementation="org.eclipse.jetty.server.bio.SelectChannelConnector">
+                        <port>${jetty.port}</port> </connector> <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
+                        <port>9443</port> <password>bigroup@2015</password> </connector> </connectors> -->
+                    <useTestClasspath>false</useTestClasspath>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                        <!-- 修改了默认属性，防止静态文件被jetty锁定 -->
+                        <defaultsDescriptor>src/main/webapp/WEB-INF/webdefault.xml</defaultsDescriptor>
+                    </webAppConfig>
+
+                </configuration>
+            </plugin>
+
+
+
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+            <!-- 只为了将webapp目录也被添加进eclipse的源码视图中 -->
+            <testResource>
+                <directory>src/main/webapp</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>WEB-INF/web*.xml</include>
+                </includes>
+            </testResource>
+        </testResources>
+    </build>
+
+</project>

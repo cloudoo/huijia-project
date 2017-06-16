@@ -82,7 +82,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <!-- 为了让WAR打包插件设定包名称不带版本号 -->
-                    <warName>${project.artifactId}</warName>
+                    <!--<warName>${project.artifactId}</warName>-->
                     <archive>
                         <!-- 为了在生成的MANIFEST.MF文件中添加Class-Path -->
                         <manifest>

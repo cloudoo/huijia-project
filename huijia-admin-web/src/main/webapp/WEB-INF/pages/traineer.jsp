@@ -664,6 +664,9 @@
                                         <th>
                                             coacherId
                                         </th>
+                                            <th>
+                                                编辑
+                                            </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -715,8 +718,8 @@
                 {
                     "data":"id",
                     "render": function ( data, type, row ) {
-                        return   "<a href='/' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i> Edit</a>"
-                            +"<a href='#' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i> Delete</a>"
+                        return   "<a href='/traineer/toedit.hj?id="+data+"' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i> 编辑</a>"
+                            +"<a href='#' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i> 禁止</a>"
                             +" </td>";
                     }
                 }

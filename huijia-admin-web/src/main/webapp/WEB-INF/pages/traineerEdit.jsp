@@ -304,7 +304,196 @@
             <!-- Page Body -->
             <div class="page-body">
                 <!-- Your Content Goes Here -->
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active">
+                                <a data-toggle="tab" href="#baseinfo">
+                                    个人基本信息
+                                </a>
+                            </li>
 
+                            <li class="tab-red">
+                                <a data-toggle="tab" href="#profile">
+                                    Profile
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    Dropdown
+                                    <b class="caret"></b>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="baseinfo" class="tab-pane active">
+                                <div class="widget flat radius-bordered">
+                                    <div class="widget-header bg-blue">
+                                        <span class="widget-caption">个人信息</span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="registration-form">
+                                            <form role="form" action="../traineer/save.hj">
+
+                                                <div class="form-title">
+                                                    基本信息
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputName" class="col-sm-2 control-label no-padding-right">姓名</label>
+                                                    <div class="col-sm-10">
+                                                         <span class="input-icon icon-right">
+                                                        <input type="hidden" name="id" value="${traineerInfo.id}">
+
+                                                        <input type="text" name = "name" class="form-control" id="userameInput" placeholder="Username" value="${traineerInfo.name}">
+                                                        <i class="glyphicon glyphicon-user circular"></i>
+                                                         </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="control-group">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input name="form-field-radio" type="radio" class="colored-blue">
+                                                                <span class="text">男</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input name="form-field-radio" type="radio" class="colored-danger">
+                                                                <span class="text"> 女</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label   class="col-sm-2 control-label no-padding-right">手机号码</label>
+
+                                                    <div class="col-sm-10">
+                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" name ="cellphone" class="form-control" placeholder="Phone" value="${traineerInfo.cellphone}">
+                                                                            <i class="glyphicon glyphicon-earphone"></i>
+                                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">开发门店</label>
+                                                    <div class="col-sm-10">
+                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" name ="shopInfo" class="form-control" placeholder="门店信息" value="${traineerInfo.shopInfo}">
+                                                                            <i class="glyphicon glyphicon-earphone"></i>
+                                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">审核状态</label>
+                                                    <div class="col-sm-10">
+                                                         <c:if test="${traineerInfo.status==1}">
+                                                         <span class="label label-success">审核通过</span>
+                                                         </c:if>
+
+                                                    </div>
+                                                </div>
+                                                <%--<div class="form-group">--%>
+                                                                <%--<span class="input-icon icon-right">--%>
+                                                                    <%--<input type="text" class="form-control" id="emailInput" placeholder="Email Address">--%>
+                                                                    <%--<i class="fa fa-envelope-o circular"></i>--%>
+                                                                <%--</span>--%>
+                                                <%--</div>--%>
+
+
+
+                                                <div class="form-title">
+                                                    其他信息
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" class="form-control" placeholder="Name">
+                                                                            <i class="fa fa-user"></i>
+                                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" class="form-control" placeholder="Family">
+                                                                            <i class="fa fa-user"></i>
+                                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" class="form-control" placeholder="Phone">
+                                                                            <i class="glyphicon glyphicon-earphone"></i>
+                                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" class="form-control" placeholder="Mobile">
+                                                                            <i class="glyphicon glyphicon-phone"></i>
+                                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="wide">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                                        <span class="input-icon icon-right">
+                                                                            <input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" placeholder="Birth Date">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" class="form-control" placeholder="Birth Place">
+                                                                            <i class="fa fa-globe"></i>
+                                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="colored-blue">
+                                                            <span class="text">Auto Sign In After Registration</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-blue">保存</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="profile" class="tab-pane">
+                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                            </div>
+
+                            <div id="dropdown1" class="tab-pane">
+                                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+                            </div>
+
+                            <div id="dropdown2" class="tab-pane">
+                                <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
             <!-- /Page Body -->
         </div>
@@ -329,24 +518,7 @@
 <script src="<c:url value='../assets/js/datatable/dataTables.bootstrap.min.js'/>"></script>
 <script src="<c:url value='../assets/js/datatable/datatables-init.js'/>"></script>
 <script>
-    $(document).ready(function () {
-        $('#simpledatatable').DataTable({
-            "ajax": {
-                "url": '../traineer/ajaxlist.aj',
-                "dataSrc": ""
-            },
-            "columns": [
-                {"data": "id"},
-                {"data": "wxOpenId"},
-                {"data": "name"},
-                {"data": "gender"},
-                {"data": "cellphone"},
-                {"data": "shopInfo"},
-                {"data": "identit"},
-                {"data": "coacherId"}
-            ]
-        });
-    });
+
 </script>
 
 </body>

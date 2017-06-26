@@ -41,6 +41,12 @@ public class TraineerController {
         return "traineerEdit";
     }
 
+    @RequestMapping("/save.hj")
+    public String save(TraineeInfo traineeInfo,Model model,HttpServletRequest request){
+
+        return "re";
+    }
+
     @RequestMapping("/ajaxlist.aj")
     @ResponseBody
     public List<TraineeInfo> ajaxListAll(){

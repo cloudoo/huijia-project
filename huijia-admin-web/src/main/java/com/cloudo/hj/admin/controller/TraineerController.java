@@ -2,6 +2,7 @@ package com.cloudo.hj.admin.controller;
 
 import com.cloudo.hj.domain.TraineeInfo;
 import com.cloudo.hj.service.ITraineeInfoService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,18 @@ public class TraineerController {
 
 
         return "traineer";
+    }
+
+    @RequestMapping("/toedit.hj")
+    public String toEdit(Model model, HttpServletRequest request) {
+        String id = request.getParameter("id");
+        if(StringUtils.isNotBlank(id)){
+           TraineeInfo traineeInfo =  traineeInfoService.find(Long.parseLong(id));
+            model.addAttribute("id",id);
+            model.addAttribute("traineeInfo",traineeInfo);
+        }
+
+        return "traineerEdit";
     }
 
     @RequestMapping("/ajaxlist.aj")

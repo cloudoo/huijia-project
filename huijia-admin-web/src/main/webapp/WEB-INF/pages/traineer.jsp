@@ -451,7 +451,7 @@
                         </li>
 
                         <li>
-                            <a href="hj_coacher.html">
+                            <a href="/coacher/list.hj">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">教练管理</span>
                             </a>
@@ -711,7 +711,15 @@
                 {"data": "cellphone"},
                 {"data": "shopInfo"},
                 {"data": "identit"},
-                {"data": "coacherId"}
+                {"data": "coacherId"},
+                {
+                    "data":"id",
+                    "render": function ( data, type, row ) {
+                        return   "<a href='/' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i> Edit</a>"
+                            +"<a href='#' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i> Delete</a>"
+                            +" </td>";
+                    }
+                }
             ]
         });
     });

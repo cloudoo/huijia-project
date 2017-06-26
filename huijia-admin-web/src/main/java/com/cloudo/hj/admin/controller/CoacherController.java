@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/traineer")
+@RequestMapping("/coacher")
 public class CoacherController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

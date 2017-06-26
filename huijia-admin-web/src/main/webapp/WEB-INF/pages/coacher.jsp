@@ -333,6 +333,9 @@
                                         <th>
                                             status
                                         </th>
+                                        <th>
+                                            edit
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -379,7 +382,15 @@
                 {"data": "gender"},
                 {"data": "cellphone"},
                 {"data": "shopInfo"},
-                {"data": "status"}
+                {"data": "status"},
+                {
+                    "data":"id",
+                    "render": function ( data, type, row ) {
+                        return   "<a href='#' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i> Edit</a>"
+                            +"<a href='#' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i> Delete</a>"
+                           +" </td>";
+                    }
+                }
             ]
         });
     });

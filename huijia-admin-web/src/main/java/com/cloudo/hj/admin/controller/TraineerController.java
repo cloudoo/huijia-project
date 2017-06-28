@@ -8,10 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -41,10 +44,28 @@ public class TraineerController {
         return "traineerEdit";
     }
 
-    @RequestMapping("/save.hj")
-    public String save(TraineeInfo traineeInfo,Model model,HttpServletRequest request){
+//    @RequestMapping(value="/save.hj",method = RequestMethod.POST)
+//    public String save(@ModelAttribute TraineeInfo traineeInfo, Model model, HttpServletRequest request, HttpServletResponse response){
+//
+//        if(traineeInfo.getId()!=null){
+//            if(traineeInfoService.update(traineeInfo)){
+//                return "redirect:list.hj";
+//            }
+//        }
+//
+//        return "500";
+//    }
 
-        return "re";
+        @RequestMapping(value="/save.hj",method = RequestMethod.POST)
+    public String save(@ModelAttribute TraineeInfo traineeInfo,Model model, HttpServletRequest request, HttpServletResponse response){
+
+//        if(traineeInfo.getId()!=null){
+//            if(traineeInfoService.update(traineeInfo)){
+//                return "redirect:list.hj";
+//            }
+//        }
+
+        return "500";
     }
 
     @RequestMapping("/ajaxlist.aj")

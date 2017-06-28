@@ -10,6 +10,7 @@ import java.sql.Date;
  */
 public class TraineeInfo implements Serializable {
 
+
     private Long id;
     private String wxOpenId; //微信openid
     private String name;

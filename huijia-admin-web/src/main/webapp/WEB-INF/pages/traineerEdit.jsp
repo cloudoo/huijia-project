@@ -331,67 +331,69 @@
                         <div class="tab-content">
                             <div id="baseinfo" class="tab-pane active">
                                 <div class="widget flat radius-bordered">
-                                    <div class="widget-header bg-blue">
-                                        <span class="widget-caption">个人信息</span>
-                                    </div>
+                                    <%--<div class="widget-header bg-blue">--%>
+                                        <%--<span class="widget-caption">个人信息</span>--%>
+                                    <%--</div>--%>
                                     <div class="widget-body">
                                         <div id="registration-form">
-                                            <form role="form" action="../traineer/save.hj">
+                                            <form class = "form-horizontal" role="form" action="save.hj" method="post">
 
+                                                <div class="widget-header bg-blue">
+                                                <span class="widget-caption">基本信息</span>
+                                                </div>
                                                 <div class="form-title">
-                                                    基本信息
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputName" class="col-sm-2 control-label no-padding-right">姓名</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-8">
                                                          <span class="input-icon icon-right">
-                                                        <input type="hidden" name="id" value="${traineerInfo.id}">
-
-                                                        <input type="text" name = "name" class="form-control" id="userameInput" placeholder="Username" value="${traineerInfo.name}">
-                                                        <i class="glyphicon glyphicon-user circular"></i>
+                                                        <input type="hidden" name="id" value="${traineeInfo.id}">
+                                                        <input type="text" name = "name" class="form-control" id="userameInput" placeholder="Username" value="${traineeInfo.name}">
+                                                        <%--<i class="glyphicon glyphicon-user circular"></i>--%>
                                                          </span>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <div class="control-group">
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input name="form-field-radio" type="radio" class="colored-blue">
-                                                                <span class="text">男</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input name="form-field-radio" type="radio" class="colored-danger">
-                                                                <span class="text"> 女</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <%--<div class="form-group">--%>
+                                                    <%--<div class="control-group">--%>
+                                                        <%--<div class="radio">--%>
+                                                            <%--<label>--%>
+                                                                <%--<input name="form-field-radio" type="radio" class="colored-blue">--%>
+                                                                <%--<span class="text">男</span>--%>
+                                                            <%--</label>--%>
+                                                        <%--</div>--%>
+                                                        <%--<div class="radio">--%>
+                                                            <%--<label>--%>
+                                                                <%--<input name="form-field-radio" type="radio" class="colored-danger">--%>
+                                                                <%--<span class="text"> 女</span>--%>
+                                                            <%--</label>--%>
+                                                        <%--</div>--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
                                                 <div class="form-group">
                                                     <label   class="col-sm-2 control-label no-padding-right">手机号码</label>
 
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-8">
                                                         <span class="input-icon icon-right">
-                                                                            <input type="text" name ="cellphone" class="form-control" placeholder="Phone" value="${traineerInfo.cellphone}">
-                                                                            <i class="glyphicon glyphicon-earphone"></i>
+                                                                            <input type="text" name ="cellphone" class="form-control" placeholder="Phone" value="${traineeInfo.cellphone}">
+                                                                            <%--<i class="glyphicon glyphicon-earphone"></i>--%>
                                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label  class="col-sm-2 control-label no-padding-right">开发门店</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-8">
                                                         <span class="input-icon icon-right">
-                                                                            <input type="text" name ="shopInfo" class="form-control" placeholder="门店信息" value="${traineerInfo.shopInfo}">
-                                                                            <i class="glyphicon glyphicon-earphone"></i>
+                                                                            <input type="text" name ="shopInfo" class="form-control" placeholder="门店信息" value="${traineeInfo.shopInfo}">
+                                                                            <%--<i class="glyphicon glyphicon-earphone"></i>--%>
                                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label  class="col-sm-2 control-label no-padding-right">审核状态</label>
-                                                    <div class="col-sm-10">
-                                                         <c:if test="${traineerInfo.status==1}">
+                                                    <div class="col-sm-8">
+                                                         <c:if test="${traineeInfo.status==1}">
                                                          <span class="label label-success">审核通过</span>
                                                          </c:if>
 
@@ -409,70 +411,127 @@
                                                 <div class="form-title">
                                                     其他信息
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                                        <span class="input-icon icon-right">
-                                                                            <input type="text" class="form-control" placeholder="Name">
-                                                                            <i class="fa fa-user"></i>
+
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">身份证号</label>
+                                                    <div class="col-sm-8">
+                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" name ="identit" class="form-control" placeholder="身份证" value="${traineeInfo.identit}">
+                                                                            <%--<i class="glyphicon glyphicon-earphone"></i>--%>
                                                                         </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                                        <span class="input-icon icon-right">
-                                                                            <input type="text" class="form-control" placeholder="Family">
-                                                                            <i class="fa fa-user"></i>
-                                                                        </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                                        <span class="input-icon icon-right">
-                                                                            <input type="text" class="form-control" placeholder="Phone">
-                                                                            <i class="glyphicon glyphicon-earphone"></i>
-                                                                        </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                                        <span class="input-icon icon-right">
-                                                                            <input type="text" class="form-control" placeholder="Mobile">
-                                                                            <i class="glyphicon glyphicon-phone"></i>
-                                                                        </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr class="wide">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                                        <span class="input-icon icon-right">
-                                                                            <input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" placeholder="Birth Date">
-                                                                            <i class="fa fa-calendar"></i>
-                                                                        </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                                        <span class="input-icon icon-right">
-                                                                            <input type="text" class="form-control" placeholder="Birth Place">
-                                                                            <i class="fa fa-globe"></i>
-                                                                        </span>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" class="colored-blue">
-                                                            <span class="text">Auto Sign In After Registration</span>
-                                                        </label>
+                                                    <label  class="col-sm-2 control-label no-padding-right">生日</label>
+                                                    <div class="col-sm-8">
+                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" name ="brithday" class="form-control" placeholder="生日" value="${traineeInfo.brithday}">
+                                                                            <%--<i class="glyphicon glyphicon-earphone"></i>--%>
+                                                                        </span>
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">身高</label>
+                                                    <div class="col-sm-8">
+                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" name ="height" class="form-control" placeholder="身高" value="${traineeInfo.height}">
+                                                                            <%--<i class="glyphicon glyphicon-earphone"></i>--%>
+                                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">身高</label>
+                                                    <div class="col-sm-8">
+                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" name ="weight" class="form-control" placeholder="体重" value="${traineeInfo.weight}">
+                                                                            <%--<i class="glyphicon glyphicon-earphone"></i>--%>
+                                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">到店距离</label>
+                                                    <div class="col-sm-8">
+                                                        <span class="input-icon icon-right">
+                                                                            <input type="text" name ="disType" class="form-control" placeholder="到店距离" value="${traineeInfo.disType}">
+                                                                            <%--<i class="glyphicon glyphicon-earphone"></i>--%>
+                                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">memo</label>
+                                                    <div class="col-sm-8">
+                                                        <span class="input-icon icon-right">
+                                                            <textarea class="form-control" name ="memo" rows="5" value="${traineeInfo.memo}"></textarea>
+
+                                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <hr class="wide">
+                                                <div class="form-title">
+                                                    健身信息
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label no-padding-right">健身需求</label>
+                                                    <div class="col-sm-1 col-xs-1">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="colored-warning" checked="checked">
+                                                                <span class="text">减肥</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-1">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="colored-warning" checked="checked">
+                                                                <span class="text">增肌</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="colored-warning" checked="checked">
+                                                                <span class="text">塑形</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-1">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="colored-warning" checked="checked">
+                                                                <span class="text">康复</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <%--private String fitNeeds;//健身需求--%>
+                                                <%--private Long coacherId =  null;//主教练信息--%>
+                                                <%--private String coacherName;//主教练名字--%>
+                                                <%--private String career;//行业--%>
+                                                <%--private String post;//职位--%>
+                                                <%--private String history;//过往病史--%>
+                                                <%--private String picDir;--%>
+
+
+
+                                                <%--<div class="form-group">--%>
+                                                    <%--<div class="checkbox">--%>
+                                                        <%--<label>--%>
+                                                            <%--<input type="checkbox" class="colored-blue">--%>
+                                                            <%--<span class="text">Auto Sign In After Registration</span>--%>
+                                                        <%--</label>--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
                                                 <button type="submit" class="btn btn-blue">保存</button>
+
                                             </form>
                                         </div>
                                     </div>

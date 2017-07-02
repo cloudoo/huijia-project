@@ -189,7 +189,7 @@
                         </li>
 
                         <li>
-                            <a href="hj_coacher.html">
+                            <a href="/coacher/list.hj">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">教练管理</span>
                             </a>
@@ -294,7 +294,7 @@
                     <li>
                         <a href="<c:url value='../traineer/list.hj'/>">会员管理</a>
                     </li>
-                    <li class="active">编辑会员</li>
+                    <li class="active">增加会员</li>
                 </ul>
             </div>
             <!-- /Page Breadcrumb -->
@@ -340,7 +340,7 @@
                                     <%--</div>--%>
                                     <div class="widget-body">
                                         <div id="registration-form">
-                                            <form class = "form-horizontal" role="form" action="save.hj" method="post">
+                                            <form class = "form-horizontal" id="addForm" role="form" action="save.hj" method="post">
 
                                                 <div class="widget-header bg-blue">
                                                 <span class="widget-caption">基本信息</span>
@@ -349,10 +349,9 @@
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <label   class="col-sm-2 control-label no-padding-right">姓名</label>
+                                                    <label for="inputName" class="col-sm-2 control-label no-padding-right">姓名</label>
                                                     <div class="col-sm-8">
                                                          <span class="input-icon icon-right">
-                                                        <input type="hidden" name="id" value="${traineeInfo.id}">
                                                         <input type="text" name = "name" class="form-control" id="userameInput" placeholder="Username" value="${traineeInfo.name}">
                                                         <%--<i class="glyphicon glyphicon-user circular"></i>--%>
                                                          </span>
@@ -380,7 +379,7 @@
 
                                                     <div class="col-sm-8">
                                                         <span class="input-icon icon-right">
-                                                                            <input type="text" name ="cellphone" class="form-control" placeholder="Phone" value="${traineeInfo.cellphone}">
+                                                                            <input type="text" id = "cellphoneInput"  name ="cellphone" class="form-control" placeholder="Phone" value="${traineeInfo.cellphone}">
                                                                             <%--<i class="glyphicon glyphicon-earphone"></i>--%>
                                                                         </span>
                                                     </div>
@@ -457,7 +456,7 @@
                                                     <label  class="col-sm-2 control-label no-padding-right">到店距离</label>
                                                     <div class="col-sm-8">
                                                         <span class="input-icon icon-right">
-                                                                            <input type="text" name ="disType" class="form-control" placeholder="到店距离" value="${traineeInfo.disType}">
+                                                                            <input type="text" name ="disType" class="form-control" placeholder="到店距离" value="1">
                                                                             <%--<i class="glyphicon glyphicon-earphone"></i>--%>
                                                                         </span>
                                                     </div>
@@ -534,7 +533,7 @@
                                                         <%--</label>--%>
                                                     <%--</div>--%>
                                                 <%--</div>--%>
-                                                <button type="submit" class="btn btn-blue">保存</button>
+                                                <button id= "subbtn" type="button" class="btn btn-blue">保存</button>
                                                 <a  href="<c:url value='../traineer/list.hj'/>" type="button" class="btn btn-yellow">返回</a>
                                             </form>
                                         </div>
@@ -543,15 +542,15 @@
                             </div>
 
                             <div id="profile" class="tab-pane">
-                                <p></p>
+                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
                             </div>
 
                             <div id="dropdown1" class="tab-pane">
-                                <p></p>
+                                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
                             </div>
 
                             <div id="dropdown2" class="tab-pane">
-                                <p></p>
+                                <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin.</p>
                             </div>
                         </div>
                     </div>
@@ -580,9 +579,7 @@
 <script src="<c:url value='../assets/js/datatable/dataTables.tableTools.min.js'/>"></script>
 <script src="<c:url value='../assets/js/datatable/dataTables.bootstrap.min.js'/>"></script>
 <script src="<c:url value='../assets/js/datatable/datatables-init.js'/>"></script>
-<script>
-
-</script>
+<script src="<c:url value='../assets/hj/traineerAdd.js'/>" ></script>
 
 </body>
 <!--  /Body -->

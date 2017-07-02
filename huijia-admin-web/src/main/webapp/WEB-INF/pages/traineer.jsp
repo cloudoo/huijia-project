@@ -576,7 +576,7 @@
                                             <span class="widget-caption"></span>
                                         </div>
                                         <div class="widget-body bordered-left bordered-warning">
-                                            <form class="form-inline" role="form">
+                                            <form class="form-inline" role="form" >
                                                 <div class="form-group">
 
                                                     <div class="controls">
@@ -591,20 +591,20 @@
 
                                                 <div class="form-group">
                                                         <span class="input-icon icon-right">
-                                                                                <input type="text" class="form-control"
+                                                                                <input id="nameInput" type="text" class="form-control"
                                                                                        placeholder="姓名">
                                                                                 <i class="fa fa-user"></i>
                                                                             </span>
                                                 </div>
                                                 <div class="form-group">
                                                         <span class="input-icon icon-right">
-                                                                                <input type="text" class="form-control"
+                                                                                <input id="cellphoneInput" type="text" class="form-control"
                                                                                        placeholder="手机号">
                                                                                 <i class="glyphicon glyphicon-phone"></i>
                                                                             </span>
                                                 </div>
-                                                <button type="submit" class="btn btn-default">查询</button>
-                                                <a href="javascript:void(0);" class="btn btn-primary shiny">增加会员</a>
+                                                <button id="ajaxQuery" type="button" class="btn btn-default">查询</button>
+                                                <a href="<c:url value='../traineer/toadd.hj'/>" class="btn btn-primary shiny">增加会员</a>
                                             </form>
                                         </div>
                                     </div>
@@ -699,33 +699,8 @@
 <script src="<c:url value='../assets/js/datatable/dataTables.tableTools.min.js'/>"></script>
 <script src="<c:url value='../assets/js/datatable/dataTables.bootstrap.min.js'/>"></script>
 <script src="<c:url value='../assets/js/datatable/datatables-init.js'/>"></script>
-<script>
-    $(document).ready(function () {
-        $('#simpledatatable').DataTable({
-            "ajax": {
-                "url": '../traineer/ajaxlist.aj',
-                "dataSrc": ""
-            },
-            "columns": [
-                {"data": "id"},
-                {"data": "wxOpenId"},
-                {"data": "name"},
-                {"data": "gender"},
-                {"data": "cellphone"},
-                {"data": "shopInfo"},
-                {"data": "identit"},
-                {"data": "coacherId"},
-                {
-                    "data":"id",
-                    "render": function ( data, type, row ) {
-                        return   "<a href='/traineer/toedit.hj?id="+data+"' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i> 编辑</a>"
-                            +"<a href='#' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i> 禁止</a>"
-                            +" </td>";
-                    }
-                }
-            ]
-        });
-    });
+<script src="<c:url value='../assets/hj/traineer.js'/>" >
+
 </script>
 
 </body>

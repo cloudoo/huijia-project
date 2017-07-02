@@ -9,6 +9,7 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="gender" property="gender" jdbcType="TINYINT"/>
         <result column="cellphone" property="cellphone" jdbcType="VARCHAR"/>
+        <result column="shopinfo" property="shopInfo" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="TINYINT"/>
         <result column="register_tm" property="registerTm" jdbcType="TIMESTAMP"/>
         <result column="identit" property="identit" jdbcType="VARCHAR"/>
@@ -32,6 +33,7 @@
   t.name          ,
   t.gender        ,
   t.cellphone     ,
+  t.shopinfo      ,
   t.status        ,
   t.register_tm   ,
   t.identit      ,
@@ -74,6 +76,9 @@
         <if test="cellphone!=null">
             and cellphone like #{cellphone}
         </if>
+        <if test="shopInfo!=null">
+            and shopinfo like #{shopInfo}
+        </if>
         <if test="registTmFrom!=null">
             <![CDATA[ AND regist_tm >= "${registTmFrom}" ]]>
 
@@ -91,6 +96,7 @@
   `name`          ,
   `gender`           ,
   `cellphone`     ,
+  `shopinfo`     ,
   `status`        ,
   `register_tm`   ,
   `identit`      ,
@@ -111,6 +117,7 @@
   #{name},
   #{gender},
   #{cellphone},
+  #{shopInfo},
   #{status},
   #{registerTm},
   #{identit},
@@ -143,6 +150,7 @@
             <if test="cellphone!=null">
                 `cellphone` = #{cellphone},
             </if>
+
             <if test="status> -1">
                 `status` = #{status},
             </if>

@@ -4,6 +4,7 @@ import com.cloudo.hj.domain.CoacherInfo;
 import com.cloudo.hj.domain.TraineeInfo;
 import com.cloudo.hj.service.ICoacherInfoService;
 import com.cloudo.hj.service.ITraineeInfoService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,17 @@ public class CoacherController {
         return "coacher";
     }
 
-    @RequestMapping("/edit.hj")
+    @RequestMapping("/toedit")
     public String edit(Model model, HttpServletRequest request) {
+        String id = request.getParameter("id");
 
+        if(StringUtils.isNotBlank(id)){
+            CoacherInfo coacherInfo =  coacherInfoService.find(Long.parseLong(id));
+            model.addAttribute("id",id);
+            model.addAttribute("coacherInfo",coacherInfo);
+        }
 
-        return "coachereidt";
+        return "coacherEdit";
     }
 
     @RequestMapping("/ajaxlist.aj")

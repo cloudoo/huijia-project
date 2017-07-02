@@ -131,7 +131,7 @@
 
                     </ul>
                 </li>
-                <!--Tables-->
+                <!---->
                 <li>
                     <a href="#" class="menu-dropdown">
                         <i class="menu-icon fa fa-table"></i>
@@ -140,20 +140,9 @@
                         <i class="menu-expand"></i>
                     </a>
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="tables-simple.html">
-                                <span class="menu-text">Simple & Responsive</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tables-data.html">
-                                <span class="menu-text">Data Tables</span>
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
-                <!--Forms-->
+                <!---->
                 <li>
                     <a href="#" class="menu-dropdown">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
@@ -164,50 +153,24 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="form-layouts.html">
-                                <span class="menu-text">Form Layouts</span>
+                            <a href="#">
+                                <span class="menu-text">设置课程</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-inputs.html">
-                                <span class="menu-text">Form Inputs</span>
+                            <a href="#">
+                                <span class="menu-text">设置卡包</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-pickers.html">
-                                <span class="menu-text">Data Pickers</span>
+                            <a href="#">
+                                <span class="menu-text">分配卡包</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="form-wizard.html">
-                                <span class="menu-text">Wizard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="form-validation.html">
-                                <span class="menu-text">Validation</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="form-editors.html">
-                                <span class="menu-text">Editors</span>
-                            </a>
-                        </li>
+
                     </ul>
-                </li>
-                <!--Charts-->
-
-
-                <!--Calendar-->
-                <li>
-                    <a href="calendar.html">
-                        <i class="menu-icon fa fa-calendar"></i>
-                        <span class="menu-text">
-                                Calendar
-                            </span>
-                    </a>
                 </li>
 
                 <!--More Pages-->
@@ -275,7 +238,7 @@
                                                                                 <i class="glyphicon glyphicon-phone"></i>
                                                                             </span>
                                                 </div>
-                                                <button type="submit" class="btn btn-default">查询</button>
+                                                <button type="button" class="btn btn-default">查询</button>
                                                 <a href="/coacher/edit.hj" class="btn btn-primary shiny">增加教练</a>
                                             </form>
                                         </div>
@@ -316,25 +279,25 @@
                                             id
                                         </th>
                                             <th>
-                                                order
+                                                排序
                                             </th>
                                         <th>
-                                            name
+                                            姓名
                                         </th>
                                         <th>
-                                            gender
+                                            性别
                                         </th>
                                         <th>
-                                            cellphone
+                                            手机号
                                         </th>
                                         <th>
-                                            shopInfo
+                                            门店
                                         </th>
                                         <th>
-                                            status
+                                            状态
                                         </th>
                                         <th>
-                                            edit
+                                            编辑
                                         </th>
                                     </tr>
                                     </thead>
@@ -368,32 +331,8 @@
 <script src="<c:url value='../assets/js/datatable/dataTables.tableTools.min.js'/>"></script>
 <script src="<c:url value='../assets/js/datatable/dataTables.bootstrap.min.js'/>"></script>
 <script src="<c:url value='../assets/js/datatable/datatables-init.js'/>"></script>
-<script>
-    $(document).ready(function () {
-        $('#simpledatatable').DataTable({
-            "ajax": {
-                "url": '../coacher/ajaxlist.aj',
-                "dataSrc": ""
-            },
-            "columns": [
-                {"data": "id"},
-                {"data": "order"},
-                {"data": "name"},
-                {"data": "gender"},
-                {"data": "cellphone"},
-                {"data": "shopInfo"},
-                {"data": "status"},
-                {
-                    "data":"id",
-                    "render": function ( data, type, row ) {
-                        return   "<a href='#' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i> Edit</a>"
-                            +"<a href='#' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i> Delete</a>"
-                           +" </td>";
-                    }
-                }
-            ]
-        });
-    });
+<script src="<c:url value='../assets/hj/coacher.js' />" >
+
 </script>
 
 </body>

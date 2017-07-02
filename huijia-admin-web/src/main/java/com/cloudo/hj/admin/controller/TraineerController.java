@@ -1,6 +1,7 @@
 package com.cloudo.hj.admin.controller;
 
 import com.cloudo.hj.domain.TraineeInfo;
+import com.cloudo.hj.param.TraineerParam;
 import com.cloudo.hj.service.ITraineeInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -32,6 +33,18 @@ public class TraineerController {
         return "traineer";
     }
 
+    @RequestMapping("/ajquery.hj")
+    public List<TraineeInfo> query(String name,String cellphone,Model model, HttpServletRequest request) {
+
+        TraineerParam param = new TraineerParam();
+        param.setCellphone(cellphone);
+        param.setName(name);
+
+        List<TraineeInfo> traineeInfos = traineeInfoService.findByParam(param);
+
+        return traineeInfos;
+    }
+
     @RequestMapping("/toedit.hj")
     public String toEdit(Model model, HttpServletRequest request) {
         String id = request.getParameter("id");
@@ -44,26 +57,34 @@ public class TraineerController {
         return "traineerEdit";
     }
 
-//    @RequestMapping(value="/save.hj",method = RequestMethod.POST)
-//    public String save(@ModelAttribute TraineeInfo traineeInfo, Model model, HttpServletRequest request, HttpServletResponse response){
-//
-//        if(traineeInfo.getId()!=null){
-//            if(traineeInfoService.update(traineeInfo)){
-//                return "redirect:list.hj";
-//            }
-//        }
-//
-//        return "500";
-//    }
+    @RequestMapping("/toadd.hj")
+    public String toAdd(Model model, HttpServletRequest request) {
 
-        @RequestMapping(value="/save.hj",method = RequestMethod.POST)
-    public String save(@ModelAttribute TraineeInfo traineeInfo,Model model, HttpServletRequest request, HttpServletResponse response){
 
-//        if(traineeInfo.getId()!=null){
-//            if(traineeInfoService.update(traineeInfo)){
-//                return "redirect:list.hj";
-//            }
-//        }
+        return "traineerAdd";
+    }
+
+    @RequestMapping(value="/save.hj",method = RequestMethod.POST)
+    public String save(@ModelAttribute TraineeInfo traineeInfo, Model model, HttpServletRequest request, HttpServletResponse response){
+
+        if(traineeInfo.getId()!=null){
+            if(traineeInfoService.update(traineeInfo)){
+                return "redirect:list.hj";
+            }
+        }else{
+            traineeInfoService.save(traineeInfo);
+            if(traineeInfo.getId()!=null){
+                return "redirect:list.hj";
+            }
+        }
+
+        return "500";
+    }
+
+    @RequestMapping(value="/test.hj",method = RequestMethod.POST)
+    public String test(@ModelAttribute TraineeInfo traineeInfo,Model model, HttpServletRequest request, HttpServletResponse response){
+
+
 
         return "500";
     }

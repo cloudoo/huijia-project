@@ -239,7 +239,7 @@
                                                                             </span>
                                                 </div>
                                                 <button type="button" class="btn btn-default">查询</button>
-                                                <a href="/coacher/edit.hj" class="btn btn-primary shiny">增加教练</a>
+                                                <a href="/coacher/toadd.hj" class="btn btn-primary shiny">增加教练</a>
                                             </form>
                                         </div>
                                     </div>

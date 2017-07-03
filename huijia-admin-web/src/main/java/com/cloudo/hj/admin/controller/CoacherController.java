@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +33,7 @@ public class CoacherController {
         return "coacher";
     }
 
-    @RequestMapping("/toedit")
+    @RequestMapping("/toedit.hj")
     public String edit(Model model, HttpServletRequest request) {
         String id = request.getParameter("id");
 
@@ -42,6 +44,31 @@ public class CoacherController {
         }
 
         return "coacherEdit";
+    }
+
+    @RequestMapping("/toadd.hj")
+    public String toAdd(Model model, HttpServletRequest request) {
+
+
+        return "coacherAdd";
+    }
+
+    @RequestMapping(value="/save.hj",method = RequestMethod.POST)
+    public String save(@ModelAttribute CoacherInfo coacherInfo, Model model, HttpServletRequest request) {
+
+
+        if(coacherInfo.getId()!=null){
+            if(coacherInfoService.update(coacherInfo)){
+                return "redirect:list.hj";
+            }
+        }else{
+            coacherInfoService.save(coacherInfo);
+            if(coacherInfo.getId()!=null){
+                return "redirect:list.hj";
+            }
+        }
+
+        return "500";
     }
 
     @RequestMapping("/ajaxlist.aj")

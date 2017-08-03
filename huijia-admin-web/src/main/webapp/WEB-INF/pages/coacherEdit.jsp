@@ -84,72 +84,7 @@
             </div>
             <!-- /Sidebar Collapse -->
             <!-- Account Area and Settings --->
-            <div class="navbar-header pull-right">
-                <div class="navbar-account">
-                    <ul class="account-area">
-                        <li>
-                            <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
-                                <i class="icon fa fa-warning"></i>
-                            </a>
-                            <!--Notification Dropdown-->
 
-                            <!--/Notification Dropdown-->
-                        </li>
-                        <li>
-                            <a class="wave in dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
-                                <i class="icon fa fa-envelope"></i>
-                                <span class="badge">3</span>
-                            </a>
-                            <!--Messages Dropdown-->
-
-                            <!--/Tasks Dropdown-->
-                        </li>
-                        <li>
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile">
-                                    <img src="assets/img/avatars/adam-jansen.jpg">
-                                </div>
-                                <section>
-                                    <h2><span class="profile"><span>David Stevenson</span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="username"><a>David Stevenson</a></li>
-                                <li class="email"><a>David.Stevenson@live.com</a></li>
-                                <!--Avatar Area-->
-                                <li>
-                                    <div class="avatar-area">
-                                        <img src="<c:url value='../assets/img/avatars/adam-jansen.jpg'/>"
-                                             class="avatar">
-                                        <span class="caption">Change Photo</span>
-                                    </div>
-                                </li>
-                                <!--Avatar Area-->
-
-                                <!--/Theme Selector Area-->
-                                <li class="dropdown-footer">
-                                    <a href="login.html">
-                                        Sign out
-                                    </a>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                        <!-- /Account Area -->
-                        <!--Note: notice that setting div must start right after account area list.
-                        no space must be between these elements-->
-                        <!-- Settings -->
-                    </ul>
-                    <div class="setting">
-                        <a id="btn-setting" title="Setting" href="#">
-                            <i class="icon glyphicon glyphicon-cog"></i>
-                        </a>
-                    </div>
-
-                    <!-- Settings -->
-                </div>
-            </div>
             <!-- /Account Area and Settings -->
         </div>
     </div>

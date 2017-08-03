@@ -219,7 +219,7 @@
                         </li>
                     </ul>
                 </li>
-                <!--Forms-->
+                <!-- -->
                 <li>
                     <a href="#" class="menu-dropdown">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
@@ -230,50 +230,24 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="form-layouts.html">
-                                <span class="menu-text">Form Layouts</span>
+                            <a href="#">
+                                <span class="menu-text">设置课程</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-inputs.html">
-                                <span class="menu-text">Form Inputs</span>
+                            <a href="#">
+                                <span class="menu-text">设置卡包</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-pickers.html">
-                                <span class="menu-text">Data Pickers</span>
+                            <a href="#">
+                                <span class="menu-text">分配卡包</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="form-wizard.html">
-                                <span class="menu-text">Wizard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="form-validation.html">
-                                <span class="menu-text">Validation</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="form-editors.html">
-                                <span class="menu-text">Editors</span>
-                            </a>
-                        </li>
+
                     </ul>
-                </li>
-                <!--Charts-->
-
-
-                <!--Calendar-->
-                <li>
-                    <a href="calendar.html">
-                        <i class="menu-icon fa fa-calendar"></i>
-                        <span class="menu-text">
-                                Calendar
-                            </span>
-                    </a>
                 </li>
 
                 <!--More Pages-->

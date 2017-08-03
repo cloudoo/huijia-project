@@ -84,72 +84,7 @@
             </div>
             <!-- /Sidebar Collapse -->
             <!-- Account Area and Settings --->
-            <div class="navbar-header pull-right">
-                <div class="navbar-account">
-                    <ul class="account-area">
-                        <li>
-                            <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
-                                <i class="icon fa fa-warning"></i>
-                            </a>
-                            <!--Notification Dropdown-->
 
-                            <!--/Notification Dropdown-->
-                        </li>
-                        <li>
-                            <a class="wave in dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
-                                <i class="icon fa fa-envelope"></i>
-                                <span class="badge">3</span>
-                            </a>
-                            <!--Messages Dropdown-->
-
-                            <!--/Tasks Dropdown-->
-                        </li>
-                        <li>
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile">
-                                    <img src="assets/img/avatars/adam-jansen.jpg">
-                                </div>
-                                <section>
-                                    <h2><span class="profile"><span>David Stevenson</span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="username"><a>David Stevenson</a></li>
-                                <li class="email"><a>David.Stevenson@live.com</a></li>
-                                <!--Avatar Area-->
-                                <li>
-                                    <div class="avatar-area">
-                                        <img src="<c:url value='../assets/img/avatars/adam-jansen.jpg'/>"
-                                             class="avatar">
-                                        <span class="caption">Change Photo</span>
-                                    </div>
-                                </li>
-                                <!--Avatar Area-->
-
-                                <!--/Theme Selector Area-->
-                                <li class="dropdown-footer">
-                                    <a href="login.html">
-                                        Sign out
-                                    </a>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                        <!-- /Account Area -->
-                        <!--Note: notice that setting div must start right after account area list.
-                        no space must be between these elements-->
-                        <!-- Settings -->
-                    </ul>
-                    <div class="setting">
-                        <a id="btn-setting" title="Setting" href="#">
-                            <i class="icon glyphicon glyphicon-cog"></i>
-                        </a>
-                    </div>
-
-                    <!-- Settings -->
-                </div>
-            </div>
             <!-- /Account Area and Settings -->
         </div>
     </div>
@@ -206,20 +141,9 @@
                         <i class="menu-expand"></i>
                     </a>
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="tables-simple.html">
-                                <span class="menu-text">Simple & Responsive</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tables-data.html">
-                                <span class="menu-text">Data Tables</span>
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
-                <!--Forms-->
+                <!-- -->
                 <li>
                     <a href="#" class="menu-dropdown">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
@@ -230,50 +154,24 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="form-layouts.html">
-                                <span class="menu-text">Form Layouts</span>
+                            <a href="#">
+                                <span class="menu-text">设置课程</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-inputs.html">
-                                <span class="menu-text">Form Inputs</span>
+                            <a href="#">
+                                <span class="menu-text">设置卡包</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-pickers.html">
-                                <span class="menu-text">Data Pickers</span>
+                            <a href="#">
+                                <span class="menu-text">分配卡包</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="form-wizard.html">
-                                <span class="menu-text">Wizard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="form-validation.html">
-                                <span class="menu-text">Validation</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="form-editors.html">
-                                <span class="menu-text">Editors</span>
-                            </a>
-                        </li>
+
                     </ul>
-                </li>
-                <!--Charts-->
-
-
-                <!--Calendar-->
-                <li>
-                    <a href="calendar.html">
-                        <i class="menu-icon fa fa-calendar"></i>
-                        <span class="menu-text">
-                                Calendar
-                            </span>
-                    </a>
                 </li>
 
                 <!--More Pages-->

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,6 +33,16 @@ public class IndexController {
 //        String wxCode = request.getParameter(WeiXinUtil.CODE);
         return "index";
 
+    }
+
+
+    @RequestMapping("sliderpage.aj")
+    @ResponseBody
+    public ModelAndView getLeftColumn(HttpServletRequest request, ModelAndView m){
+
+        m.setViewName("sliderpage");
+
+        return m;
     }
 
 

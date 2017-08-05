@@ -399,104 +399,15 @@
         <!-- Page Container -->
         <div class="page-container">
             <!-- Page Sidebar -->
+            <!-- Page Sidebar Header-->
             <div class="page-sidebar" id="sidebar">
                 <!-- Page Sidebar Header-->
-                <div class="sidebar-header-wrapper">
-                    <input type="text" class="searchinput" />
-                    <i class="searchicon fa fa-search"></i>
-                    <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
-                </div>
-                <!-- /Page Sidebar Header -->
-                <!-- Sidebar Menu -->
-                <ul class="nav sidebar-menu">
-                   
-                    <!--UI Elements-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-user"></i>
-                            <span class="menu-text"> 用户管理 </span>
 
-                            <i class="menu-expand"></i>
-                        </a>
-
-                        <ul class="submenu">
-                            <li>
-                                <a href="<c:url value='/traineer/list.hj'/>">
-                                    <span class="menu-text">会员管理</span>
-                                </a>
-                            </li>
-                            
-                            <li>
-                                <a href="<c:url value='/coacher/list.hj'/>">
-                                    <span class="menu-text">教练管理</span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </li>
-                    <!--Tables-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-table"></i>
-                            <span class="menu-text"> 预约签到 </span>
-
-                            <i class="menu-expand"></i>
-                        </a>
-
-                        <ul class="submenu">
-                            <li>
-                                <a href="">
-                                    <span class="menu-text">预约管理</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span class="menu-text">签到管理</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- -->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-pencil-square-o"></i>
-                            <span class="menu-text"> 课程卡包 </span>
-
-                            <i class="menu-expand"></i>
-                        </a>
-
-                        <ul class="submenu">
-                            <li>
-                                <a href="#">
-                                    <span class="menu-text">设置课程</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <span class="menu-text">设置卡包</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <span class="menu-text">分配卡包</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <!--Charts-->
-                    
-                    
-                    
-
-                   
-                    <!--More Pages-->
-                    
-                </ul>
                 <!-- /Sidebar Menu -->
             </div>
+            <!-- /Sidebar Menu -->
+                <!-- /Sidebar Menu -->
+
             <!-- /Page Sidebar -->
             <!-- Page Content -->
             <div class="page-content">
@@ -550,11 +461,13 @@
     </div>
 
     <!--Basic Scripts-->
-    <script src="assets/js/jquery-2.0.3.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="<c:url value='/assets/js/jquery-2.0.3.min.js'/>"></script>
+    <script src="<c:url value='/assets/js/bootstrap.min.js'/>"></script>
 
     <!--Beyond Scripts-->
-    <script src="assets/js/beyond.min.js"></script>
+    <script src="<c:url value='/assets/js/beyond.min.js'/>"></script>
+
+    <script src="<c:url value='/assets/hj/common.js'/>"></script>
 
     <!--Page Related Scripts-->
 

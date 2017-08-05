@@ -411,19 +411,19 @@
 </div>
 
 <!--Basic Scripts-->
-<script src="<c:url value='../assets/js/jquery-2.0.3.min.js'/>"></script>
-<script src="<c:url value='../assets/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/assets/js/jquery-2.0.3.min.js'/>"></script>
+<script src="<c:url value='/assets/js/bootstrap.min.js'/>"></script>
 
 <!--Beyond Scripts-->
-<script src="<c:url value='../assets/js/beyond.min.js'/>"></script>
+<script src="<c:url value='/assets/js/beyond.min.js'/>"></script>
 
 <!--Page Related Scripts-->
-<script src="<c:url value='../assets/js/datatable/jquery.dataTables.min.js'/>"></script>
-<script src="<c:url value='../assets/js/datatable/ZeroClipboard.js'/>"></script>
-<script src="<c:url value='../assets/js/datatable/dataTables.tableTools.min.js'/>"></script>
-<script src="<c:url value='../assets/js/datatable/dataTables.bootstrap.min.js'/>"></script>
-<script src="<c:url value='../assets/js/datatable/datatables-init.js'/>"></script>
-<script src="<c:url value='../assets/js/editors/summernote/summernote.js'/>"></script>
+<script src="<c:url value='/assets/js/datatable/jquery.dataTables.min.js'/>"></script>
+<script src="<c:url value='/assets/js/datatable/ZeroClipboard.js'/>"></script>
+<script src="<c:url value='/assets/js/datatable/dataTables.tableTools.min.js'/>"></script>
+<script src="<c:url value='/assets/js/datatable/dataTables.bootstrap.min.js'/>"></script>
+<script src="<c:url value='/assets/js/datatable/datatables-init.js'/>"></script>
+<script src="<c:url value='/assets/js/editors/summernote/summernote.js'/>"></script>
 <script>
     $('#description').summernote({ height: 200 });
 </script>

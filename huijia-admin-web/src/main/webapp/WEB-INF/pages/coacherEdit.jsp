@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿﻿<%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -117,14 +117,14 @@
 
                     <ul class="submenu">
                         <li >
-                            <a href="/traineer/list.hj">
+                            <a href="<c:url value='/traineer/list.hj'/>">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">会员管理</span>
                             </a>
                         </li>
 
                         <li class="active">
-                            <a href="/coacher/list.hj">
+                            <a href="<c:url value='/coacher/list.hj'/>">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">教练管理</span>
                             </a>

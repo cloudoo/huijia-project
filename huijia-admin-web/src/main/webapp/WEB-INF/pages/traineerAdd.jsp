@@ -107,7 +107,7 @@
                         <li>
                             <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                 <div class="avatar" title="View your public profile">
-                                    <img src="assets/img/avatars/adam-jansen.jpg">
+                                    <img src="<c:url value='../assets/img/avatars/adam-jansen.jpg'/>">
                                 </div>
                                 <section>
                                     <h2><span class="profile"><span>David Stevenson</span></span></h2>
@@ -182,14 +182,14 @@
 
                     <ul class="submenu">
                         <li class="active">
-                            <a href="/traineer/list.hj">
+                            <a href="<c:url value='/traineer/list.hj'/>">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">会员管理</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="/coacher/list.hj">
+                            <a href="<c:url value='/coacher/list.hj'/>">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">教练管理</span>
                             </a>

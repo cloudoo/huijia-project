@@ -108,7 +108,7 @@
                         <port>9443</port> <password>bigroup@2015</password> </connector> </connectors> -->
                     <useTestClasspath>false</useTestClasspath>
                     <webAppConfig>
-                        <contextPath>/</contextPath>
+                        <contextPath>/hj-admin</contextPath>
                         <!-- 修改了默认属性，防止静态文件被jetty锁定 -->
                         <defaultsDescriptor>src/main/webapp/WEB-INF/webdefault.xml</defaultsDescriptor>
                     </webAppConfig>

@@ -72,7 +72,7 @@
                 <div class="navbar-header pull-left">
                     <a href="#" class="navbar-brand">
                         <small>
-                            <img src="assets/img/logo.png" alt="" />
+                            <img src="<c:url value='assets/img/logo.png'/>" alt="" />
                         </small>
                     </a>
                 </div>
@@ -312,7 +312,7 @@
                             <li>
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="View your public profile">
-                                        <img src="assets/img/avatars/adam-jansen.jpg">
+                                        <img src="<c:url value='assets/img/avatars/adam-jansen.jpg' />">
                                     </div>
                                     <section>
                                         <h2><span class="profile"><span>David Stevenson</span></span></h2>
@@ -325,7 +325,7 @@
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
-                                            <img src="assets/img/avatars/adam-jansen.jpg" class="avatar">
+                                            <img src="<c:url value='assets/img/avatars/adam-jansen.jpg'/>" class="avatar">
                                             <span class="caption">Change Photo</span>
                                         </div>
                                     </li>
@@ -421,13 +421,13 @@
 
                         <ul class="submenu">
                             <li>
-                                <a href="/traineer/list.hj">
+                                <a href="<c:url value='/traineer/list.hj'/>">
                                     <span class="menu-text">会员管理</span>
                                 </a>
                             </li>
                             
                             <li>
-                                <a href="/coacher/list.hj">
+                                <a href="<c:url value='/coacher/list.hj'/>">
                                     <span class="menu-text">教练管理</span>
                                 </a>
                             </li>
@@ -558,19 +558,7 @@
 
     <!--Page Related Scripts-->
 
-    <!--Google Analytics::Demo Only-->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-52103994-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
+   
 </body>
 <!--  /Body -->
 </html>

@@ -182,14 +182,14 @@
 
                     <ul class="submenu">
                         <li >
-                            <a href="/traineer/list.hj">
+                            <a href="<c:url value='/traineer/list.hj' />">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">会员管理</span>
                             </a>
                         </li>
 
                         <li class="active">
-                            <a href="/coacher/list.hj">
+                            <a href="<c:url value='/coacher/list.hj' />">
                                 <i class="menu-icon fa fa-user"></i>
                                 <span class="menu-text">教练管理</span>
                             </a>
